@@ -14,5 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/motel-room', function () {
+    return view('motel_room');
+});
+Route::get('/apartment', function () {
+    return view('apartment');
+});
+Route::get('/house', function () {
+    return view('house');
+});
+Route::get('/graft', function () {
+    return view('graft');
+});
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/forum', function () {
+    return view('forum');
 });
