@@ -34,6 +34,9 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::get('/user', function () {
+    return view('users.user');
+});
 Route::get('/forum', function () {
     return view('forum');
 });

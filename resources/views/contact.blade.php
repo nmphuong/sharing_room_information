@@ -8,10 +8,10 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate mb-0 text-center">
-					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Home <i
-									class="fa fa-chevron-right"></i></a></span> <span>Contact Us <i
+					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="{{asset('/')}}">Trang chủ <i
+									class="fa fa-chevron-right"></i></a></span> <span>Liên hệ <i
 								class="fa fa-chevron-right"></i></span></p>
-					<h1 class="mb-0 bread">Contact Us</h1>
+					<h1 class="mb-0 bread">Liên Hệ</h1>
 				</div>
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 										<span class="fa fa-map-marker"></span>
 									</div>
 									<div class="text">
-										<p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+										<p><span>Địa chỉ:</span> 65 Huỳnh Thúc Kháng, Quận 1, Thành Phố Hồ Chí Minh</p>
 									</div>
 								</div>
 							</div>
@@ -39,7 +39,7 @@
 										<span class="fa fa-phone"></span>
 									</div>
 									<div class="text">
-										<p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+										<p><span>Hotline:</span> <a href="tel://1234567920">+ 123 456 789</a></p>
 									</div>
 								</div>
 							</div>
@@ -49,7 +49,7 @@
 										<span class="fa fa-paper-plane"></span>
 									</div>
 									<div class="text">
-										<p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a>
+										<p><span>Email:</span> <a href="mailto:info@yoursite.com">demo@gmail.com</a>
 										</p>
 									</div>
 								</div>
@@ -60,7 +60,7 @@
 										<span class="fa fa-globe"></span>
 									</div>
 									<div class="text">
-										<p><span>Website</span> <a href="#">yoursite.com</a></p>
+										<p><span>Website</span> <a href="#">shareroominfo.com</a></p>
 									</div>
 								</div>
 							</div>
@@ -68,40 +68,40 @@
 						<div class="row no-gutters">
 							<div class="col-md-7">
 								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4">Contact Us</h3>
+									<h3 class="mb-4">Liên hệ với chúng tôi</h3>
 									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="name">Full Name</label>
+													<label class="label" for="name">Họ và tên</label>
 													<input type="text" class="form-control" name="name" id="name"
-														placeholder="Name">
+														placeholder="Họ và tên">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="email">Email Address</label>
+													<label class="label" for="email">Địa chỉ email</label>
 													<input type="email" class="form-control" name="email" id="email"
 														placeholder="Email">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<label class="label" for="subject">Subject</label>
+													<label class="label" for="subject">Tiêu đề</label>
 													<input type="text" class="form-control" name="subject" id="subject"
-														placeholder="Subject">
+														placeholder="Tiêu đề">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<label class="label" for="#">Message</label>
+													<label class="label" for="#">Nội dung</label>
 													<textarea name="message" class="form-control" id="message" cols="30"
-														rows="4" placeholder="Message"></textarea>
+														rows="4" placeholder="Nội dung"></textarea>
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="submit" value="Send Message" class="btn btn-primary">
+													<input type="submit" value="Gửi" class="btn btn-primary">
 													<div class="submitting"></div>
 												</div>
 											</div>

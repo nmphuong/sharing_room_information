@@ -7,8 +7,8 @@
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center">
         <div class="col-md-9 ftco-animate mb-0 text-center">
-            <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>About us <i class="fa fa-chevron-right"></i></span></p>
-          <h1 class="mb-0 bread">About Us</h1>
+            <p class="breadcrumbs mb-0"><span class="mr-2"><a href="{{asset('/')}}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Giới thiệu <i class="fa fa-chevron-right"></i></span></p>
+          <h1 class="mb-0 bread">Giới Thiệu</h1>
         </div>
       </div>
     </div>
@@ -19,172 +19,132 @@
               <div class="row justify-content-center">
                   <div class="col-md-10">
             <div class="heading-section text-center ftco-animate pb-4">
-                <span class="subheading">Welcome to Book Publishing Company</span>
-              <h2>Welcome to Publishing Company</h2>
+                <span class="subheading">Chào mừng bạn đến với Sharing Room Information</span>
+              <h2>Welcome</h2>
             </div>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <p>Trang web của chúng tôi được thành lập dựa trên nhu cầu về chỗ ở dành cho những bạn sinh viên hay tất cả mọi người cần tìm chỗ ở mới hoặc tìm nhà, căn hộ nhưng lại không có thời gian để đi tìm và cho các bạn sinh viên đến nơi lạ để học. Và dành cho những người cần cho thuê hoặc bán chỗ ở một cách nhanh nhất.</p>
             <blockquote class="blockquote my-5">
                 <span class="fa fa-quote-left"></span>
-                <h3>Good friends, good books, and a sleepy conscience: this is the ideal life.</h3>
+                <h3>Nhà tốt, giá tốt, thông tin đầy đủ.</h3>
             </blockquote>
-            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+            <p>Đây là một website chứa một lượng lớn thông tin về các nhà, phòng hiện tại chủ nhà
+              không có nhu cầu sử dụng và muốn cho thuê. Người truy cập vào trang web có thể sử
+              dụng chức năng tìm kiếm theo khu vực như ở thành phố, quân huyện, tìm theo địa chỉ
+              như số nhà của đường nào đó, theo giá tiền thuê cũng như các tiện nghi của nhà, phòng
+              cho thuê… Đồng thời website cũng liên kết với các website khác nhằm giúp người truy
+              cập có được hướng dẫn cụ thể sơ đồ để đi đến nhà cần tìm, cung cấp cho người truy cập
+              thông tin chi tiết về nhà, phòng có nhu cầu cho thuê, địa chỉ, email cũng như điện thoại
+              để liên hệ với chủ nhà. Website cũng có khả năng tiếp nhận cập nhật thông tin về một
+              ngôi nhà nào đó mà người chủ nhà muốn đăng tải trên website cũng như các đăng ký
+              quảng cáo trên website từ phía các công ty khác.</p>
           </div>
       </div>
           </div>
       </section>
 
-      <section class="ftco-section ftco-no-pt">
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/about-1.jpg);">
-                  </div>
-                  <div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
-            <div class="heading-section">
-                <span class="subheading">Welcome To Publishing Company</span>
-              <h2 class="mb-4">Publishing Company Created By Authors</h2>
-
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-              <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
-
-              <a href="#" class="btn btn-primary">View All Our Authors</a>
-            </div>
-
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      <section class="ftco-section testimony-section ftco-no-pb">
-      <div class="img img-bg border" style="background-image: url(images/bg_4.jpg);"></div>
-      <div class="overlay"></div>
-    <div class="container">
+      
+<section class="ftco-section testimony-section ftco-no-pb">
+  <div class="img img-bg border" style="background-image: url(images/bg_4.jpg);"></div>
+  <div class="overlay"></div>
+  <div class="container">
       <div class="row justify-content-center mb-5">
-        <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-            <span class="subheading">Testimonial</span>
-          <h2 class="mb-3">Kinds Words From Clients</h2>
-        </div>
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+              <!-- <span class="subheading">Testimonial</span> -->
+              <h2 class="mb-3">Ý KIẾN NGƯỜI DÙNG</h2>
+          </div>
       </div>
       <div class="row ftco-animate">
-        <div class="col-md-12">
-          <div class="carousel-testimony owl-carousel ftco-owl">
-            <div class="item">
-              <div class="testimony-wrap py-4">
-                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                <div class="text">
-                  <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                      <div class="pl-3">
-                          <p class="name">Roger Scott</p>
-                          <span class="position">Marketing Manager</span>
-                        </div>
-                    </div>
-                </div>
+          <div class="col-md-12">
+              <div class="carousel-testimony owl-carousel ftco-owl">
+                  <div class="item">
+                      <div class="testimony-wrap py-4">
+                          <div class="icon d-flex align-items-center justify-content-center"><span
+                                  class="fa fa-quote-left"></div>
+                          <div class="text">
+                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
+                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
+                              <div class="d-flex align-items-center">
+                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
+                                  <div class="pl-3">
+                                      <p class="name">Ninh Vo 1</p>
+                                      <span class="position">User</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="testimony-wrap py-4">
+                          <div class="icon d-flex align-items-center justify-content-center"><span
+                                  class="fa fa-quote-left"></div>
+                          <div class="text">
+                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
+                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
+                              <div class="d-flex align-items-center">
+                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
+                                  <div class="pl-3">
+                                      <p class="name">Ninh Vo 2</p>
+                                      <span class="position">User</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="testimony-wrap py-4">
+                          <div class="icon d-flex align-items-center justify-content-center"><span
+                                  class="fa fa-quote-left"></div>
+                          <div class="text">
+                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
+                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
+                              <div class="d-flex align-items-center">
+                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
+                                  <div class="pl-3">
+                                      <p class="name">Ninh Vo 3</p>
+                                      <span class="position">User</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="testimony-wrap py-4">
+                          <div class="icon d-flex align-items-center justify-content-center"><span
+                                  class="fa fa-quote-left"></div>
+                          <div class="text">
+                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
+                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
+                              <div class="d-flex align-items-center">
+                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
+                                  <div class="pl-3">
+                                      <p class="name">Ninh Vo 4</p>
+                                      <span class="position">User</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="testimony-wrap py-4">
+                          <div class="icon d-flex align-items-center justify-content-center"><span
+                                  class="fa fa-quote-left"></div>
+                          <div class="text">
+                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
+                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
+                              <div class="d-flex align-items-center">
+                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
+                                  <div class="pl-3">
+                                      <p class="name">Ninh Vo 5</p>
+                                      <span class="position">User</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap py-4">
-                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                <div class="text">
-                  <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                      <div class="pl-3">
-                          <p class="name">Roger Scott</p>
-                          <span class="position">Marketing Manager</span>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap py-4">
-                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                <div class="text">
-                  <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-                      <div class="pl-3">
-                          <p class="name">Roger Scott</p>
-                          <span class="position">Marketing Manager</span>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap py-4">
-                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                <div class="text">
-                  <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                      <div class="pl-3">
-                          <p class="name">Roger Scott</p>
-                          <span class="position">Marketing Manager</span>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap py-4">
-                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                <div class="text">
-                  <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                      <div class="pl-3">
-                          <p class="name">Roger Scott</p>
-                          <span class="position">Marketing Manager</span>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="ftco-counter ftco-section img" id="section-counter">
-      <div class="container">
-          <div class="row">
-        <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-          <div class="block-18 py-4 mb-4">
-            <div class="text align-items-center">
-              <strong class="number" data-number="75678">0</strong>
-              <span>Active Readers</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-          <div class="block-18 py-4 mb-4">
-            <div class="text align-items-center">
-              <strong class="number" data-number="3040">0</strong>
-              <span>Total Pages</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-          <div class="block-18 py-4 mb-4">
-            <div class="text align-items-center">
-              <strong class="number" data-number="283">0</strong>
-              <span>Cup Of Coffee</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-          <div class="block-18 py-4 mb-4">
-            <div class="text align-items-center">
-              <strong class="number" data-number="14500">0</strong>
-              <span>Facebook Fans</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-  </section>
+  </div>
+</section>
 
 @stop
