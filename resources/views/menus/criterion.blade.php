@@ -16,7 +16,7 @@
              </select>
         </div>
         <div class="form-group m-3">
-            <select name="selValue" class="form-control">
+            <select name="selValue" class="form-control select">
                 <option value="1">--Diện Tích--</option>
              </select>
         </div>

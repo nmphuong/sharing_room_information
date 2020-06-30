@@ -37,6 +37,18 @@ Route::get('/contact', function () {
 Route::get('/user', function () {
     return view('users.user');
 });
+Route::get('/add_post', function () {
+    return view('posts.addPost');
+});
+Route::get('/edit', function () {
+    return view('posts.editPost');
+});
+Route::get('/post', function () {
+    return view('users.managerPost');
+});
+Route::get('/login', function () {
+    return view('users.loginRegister');
+});
 Route::get('/forum', function () {
     return view('forum');
 });

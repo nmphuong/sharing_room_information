@@ -111,6 +111,7 @@
 				stroke="#F96D00" /></svg></div>
 
 
+	<script src="{{ asset('editor\ckeditor\ckeditor.js') }}" defer></script>
 	<script src="{{ asset('js/jquery.min.js') }}" defer></script>
 	<script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}" defer></script>
 	<script src="{{ asset('js/popper.min.js') }}" defer></script>
@@ -127,7 +128,6 @@
 	{{-- <script src="{{asset('js/google-map.js')}}" defer></script> --}}
 	{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js') }}" defer></script> --}}
 	<script src="{{asset('js/main.js')}}" defer></script>
-
 </body>
 
 </html>

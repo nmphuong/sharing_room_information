@@ -41,12 +41,13 @@
                       </div>
                     <div class="w-100 h-100" id="chg-avt" style="background-color: rgba(24, 24, 24, 0.726); border-radius: 50%;">
                             <i class="fa fa-pencil text-white" style="font-size: 3rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" aria-hidden="true"></i>
+                            <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="">
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-12 text-center mt-2">
-            <input id="edit-fn" class="display-4 text-center text-primary" style="font-family: 'Lobster', cursive!important; outline: none; border: 0;" disabled value="Nguyễn Minh Phương">
+            <input id="edit-fn" style="font-size: 2em" class="text-center text-primary" style="font-family: 'Lobster', cursive!important; outline: none; border: 0;" disabled value="Nguyễn Minh Phương">
             <span class="fa fa-pencil display-4" id="e-fn-pen"></span>
         </div>
         <div class="col-lg-12 mt-2">
@@ -81,10 +82,13 @@
         </div>
     </div>
     <div class="row justify-content-center">
+      <div class="manager-post">
+      <button class="btn btn-info m-2"><a href="{{asset('/post')}}" class="text-white">Quản lý tin</a></button>
+      </div>
         <div class="update-profile">
-            <button id="update-profile" class="btn btn-info border-0 m-2" data-toggle="modal" data-target="#exampleModal">Cập nhật thông tin</button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="max-width: 50%;" role="document">
+            <button id="update-profile" class="btn btn-info border-0 m-2" data-toggle="modal" data-target="#update-profile-modal">Cập nhật thông tin</button>
+        <div class="modal fade" id="update-profile-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog"  role="document">
               <div class="modal-content row">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Cập nhật thông tin</h5>
@@ -138,14 +142,45 @@
             </div>
           </div>
         </div>
-        <button id="update-password" class="btn btn-warning border-0 m-2">Đổi mật khẩu</button>
+        <div class="update-password">
+          <button id="update-password" class="btn btn-danger border-0 m-2" data-toggle="modal" data-target="#update-password-modal">Cập nhật mật khẩu</button>
+        <div class="modal fade" id="update-password-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog"  role="document">
+            <div class="modal-content row">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cập nhật mật khẩu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="needs-validation row" novalidate>
+                  <div class="form-group col-lg-12">
+                    <label for="exampleInputEmail1">Mật khẩu cũ</label>
+                    <input type="password" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Mật khẩu cũ" value="" required>
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <label for="exampleInputEmail1">Mật khẩu mới</label>
+                    <input type="password" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Mật khẩu mới" value="" required>
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <label for="exampleInputEmail1">Nhập lại mật khẩu mới</label>
+                    <input type="password" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Nhập lại mật khẩu mới" value="" required>
+                  </div>
+                  <div class="col-lg-12">
+                      <button type="submit" class="btn btn-info">Cập nhật</button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </div>
 </section>
-{{-- <script>
-    const le = document.getElementById('d-avt');
-    le.style.height = le.clientWidth + 'px';
-</script> --}}
 <script>
     const fn = document.getElementById('edit-fn');
     const pen = document.getElementById('e-fn-pen');
