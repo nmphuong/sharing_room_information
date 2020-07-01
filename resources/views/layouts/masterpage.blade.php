@@ -35,7 +35,7 @@
 		<div class="row justify-content-between">
 			<div class="col-md-8 order-md-last">
 				<div class="row">
-					<div class="col-md-6 text-center">
+					<div class="col-md-5 text-center">
 						<a class="navbar-brand" href="index.html">
 							<div class="w-50 m-auto">
 								<img class="w-25" src="{{asset('images/logo.png')}}" alt="">
@@ -43,7 +43,7 @@
 							Sharing Room <span>Information</span>
 						</a>
 					</div>
-					<div class="col-md-4 d-md-flex mb-md-0 mb-3">
+					<div class="col-md-5 d-md-flex mb-md-0 mb-3">
 						<form action="#" class="searchform order-lg-last">
 							<div class="form-group d-flex">
 								<input type="text" class="form-control pl-3" placeholder="Tiềm kiếm...">
@@ -52,10 +52,22 @@
 							</div>
 						</form>
 					</div>
-				<a href="{{asset('/user')}}" class="col-md-2 d-md-flex mb-md-0 mb-3 justify-content-center">
-					<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('images/house.jpg'); background-size: cover;">
+					<div class="col-md-2">
+						<div class="row d-flex">
+							{{-- <a href="{{asset('/user')}}" class="col-5 mb-3 justify-content-center"> --}}
+								<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('images/house.jpg'); background-size: cover;">
+								<div class="btn-group">
+									<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="{{asset('/user')}}">{{Auth::user()->fullname}}</a>
+									  <div class="dropdown-divider"></div>
+									  <a class="dropdown-item" href="{{asset('/logout')}}">Đăng xuất</a>
+									</div>
+								</div>
+								</div>
+							{{-- </a> --}}
+						</div>
 					</div>
-				</a>
 				</div>
 			</div>
 			<div class="col-md-4 d-flex">

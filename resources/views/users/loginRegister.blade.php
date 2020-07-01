@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <style>
         .register{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
@@ -59,7 +59,7 @@
     padding: 10%;
     margin-top: 10%;
 }
-.btnRegister{
+.btnRegister, .btnLogin{
     float: right;
     margin-top: 10%;
     border: none;
@@ -113,36 +113,83 @@
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                         <h3>Chào mừng</h3>
                         <p>Đến với trang chia sẻ thông tin nhà trọ!</p>
-                        <input type="submit" id="cho-log" name="" value="Đăng nhập"/><br/>
-                        <input type="submit" id="cho-re" name="" value="Đăng ký"/><br/>
+                        <input class="mt-0" type="submit" id="cho-log" name="" value="Đăng nhập"/><br/>
+                        <input class="mt-0" type="submit" id="cho-re" name="" value="Đăng ký"/><br/>
                     </div>
-                    <div class="col-md-9 register-right">
-                        <form action="">
+                    <div class="col-md-9 login-right">
+                        <form action="login" method="post" role="form">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <h3 class="register-heading">Đăng hập</h3>
+                                    <div class="row register-form">
+                                        <div class="col-md-12 justify-content-center">
+                                            @if (session('invalidaccount'))
+                                                <div class="alert alert-danger text-center">
+                                                    {{ session('invalidaccount') }}
+                                                </div>
+                                            @endif
+                                            
+                                        @if (session('popup_success_register'))
+                                        <div id="popup_success_register" class="modal d-block" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <p>Đăng ký tài khoản thành công vui lòng đăng nhập!</p>
+                                                </div>
+                                                    <button id="close_popup_success_register" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        @endif
+                                            <div class="form-group col-lg-6 m-auto pb-3">
+                                            <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" value="{{old('username')}}" />
+                                            </div>
+                                            <div class="form-group col-lg-6 m-auto">
+                                                <input type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                            </div>
+                                            <div class="form-group col-lg-6 m-auto">
+                                                <input type="submit" class="btnLogin"  value="Đăng nhập"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{csrf_field()}}
+                        </form>
+                    </div>
+                    <div class="col-md-9 register-right d-none">
+                        <form action="register" role="form" method="POST">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <h3 class="register-heading">Đăng ký</h3>
                                     <div class="row register-form">
+                                        
+                                        @if (session('dupticateaccount'))
+                                        <div class="alert alert-danger text-center col-12">
+                                        {{ session('dupticateaccount') }}
+                                        </div>
+                                        @endif
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Tên đầy đủ" value="" />
+                                                <input type="text" name="fullname" class="form-control" placeholder="Tên đầy đủ" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Tên đăng nhập" value="" />
+                                                <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                                <input type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control"  placeholder="Nhập lại mật khẩu" value="" />
+                                                <input type="password" name="re_password" class="form-control"  placeholder="Nhập lại mật khẩu" value="" />
                                             </div>
                                             <div class="form-group">
                                                 <div class="maxl">
                                                     <label class="radio inline"> 
-                                                        <input type="radio" name="gender" value="male" checked>
+                                                        <input type="radio" name="male" value="male" checked>
                                                         <span> Nam </span> 
                                                     </label>
                                                     <label class="radio inline"> 
-                                                        <input type="radio" name="gender" value="female">
+                                                        <input type="radio" name="female" value="female">
                                                         <span>Nữ </span> 
                                                     </label>
                                                 </div>
@@ -150,49 +197,28 @@
                                         </div>
                                         <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="date" class="form-control"  placeholder="Sinh nhật" value="" />
+                                            <input type="date" class="form-control" name="birthday"  placeholder="Sinh nhật" value="" />
                                         </div>
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Địa chỉ" value="" />
+                                                <input type="text" name="address" class="form-control" placeholder="Địa chỉ" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Số điện thoại" value="" />
+                                                <input type="text" minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Số điện thoại" value="" />
                                             </div>
                                             <input type="submit" class="btnRegister"  value="Đăng ký"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-9 login-right d-none">
-                        <form action="">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <h3 class="register-heading">Đăng hập</h3>
-                                    <div class="row register-form">
-                                        <div class="col-md-12 justify-content-center">
-                                            <div class="form-group col-lg-6">
-                                                <input type="text" class="form-control" placeholder="Tên đăng nhập" value="" />
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <input type="password" class="form-control" placeholder="Mật khẩu *" value="" />
-                                            </div>
-                                        <div class="form-group col-lg-6">
-                                            <input type="submit" class="btnRegister"  value="Đăng nhập"/>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {{csrf_field()}}
                         </form>
                     </div>
                 </div>
 
             </div>
             
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
 <script>
     $(document).ready(function(){
         $("#cho-log").click(function(){
@@ -202,6 +228,10 @@
         $("#cho-re").click(function(){
             $(".login-right").addClass("d-none");
             $(".register-right").removeClass("d-none");
+        });
+        $("#close_popup_success_register").click(function(){
+            $("#popup_success_register").addClass("fade-in");
+            $("#popup_success_register").removeClass("d-block");
         });
     });
 </script> 
