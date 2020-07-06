@@ -2,17 +2,26 @@
     <form class="d-flex justify-content-center">
         <div class="form-group m-3">
             <select name="selValue" class="form-control">
-                <option value="1">--Thành Phố--</option>
+                <option value="-1">--Thành phố--</option>
+            @foreach ( $province as $prov )
+                <option value="{{$prov->id}}">{{$prov->_name}}</option>
+            @endforeach
              </select>
         </div>
         <div class="form-group m-3">
             <select name="selValue" class="form-control">
-                <option value="1">--Quận/Huyện--</option>
+                <option value="-1">--Quận/Huyện--</option>
+                @foreach ( $district as $dist )
+                    <option value="{{$dist->id}}">{{$dist->_name}}</option>
+                @endforeach
              </select>
         </div>
         <div class="form-group m-3">
             <select name="selValue" class="form-control">
-                <option value="1">--Phường--</option>
+                <option value="-1">--Phường--</option>
+                @foreach ( $ward as $war )
+                    <option value="{{$war->id}}">{{$war->_name}}</option>
+                @endforeach
              </select>
         </div>
         <div class="form-group m-3">

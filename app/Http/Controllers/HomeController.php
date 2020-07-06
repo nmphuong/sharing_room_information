@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use App\Province;
+use App\District;
+use App\Ward;
+use DB;
 
 class HomeController extends Controller
 {
@@ -16,7 +20,13 @@ class HomeController extends Controller
     {
         if(Session::get('session_logged_in') == null)
         return redirect('/logout');
-        else return view('index');
+        else {
+            $province['province'] = Province::all();
+            $district['district'] = District::all();
+            $ward['ward'] = Ward::all();
+           //dd($ward);
+            return view('index',$province, $district, $ward);
+        }
     }
 
     /**
@@ -37,7 +47,6 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
