@@ -1,2 +1,0 @@
-INSERT INTO `user`(`username`, `password`, `full_name`, `avatar`, `birthday`, `phone`, `address`, `vip`, `status`, `role`, `confirmation`) VALUES 
-('webmaster', 'cfb7de1d4779b3f0dc43d0f57725ba7d', 'Nguyen Minh Phuong', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shareicon.net%2Fgoogle-webmaster-180923&psig=AOvVaw15QI4f60xDOegyBE8kOWV8&ust=1593527826043000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMiM7PWfp-oCFQAAAAAdAAAAABAD', '25/11/1999','0389902073', '65, huynh thuc khang, quan 1, thanh pho hcm', 0,1,1,0);

@@ -35,9 +35,9 @@
         </div>
         <div class="col-lg-12 justify-content-center">
             <a href="#">
-                <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('images/house.jpg'); background-size: cover; width: 250px; height: 250px;">
+                <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{Auth::user()->avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 250px; height: 250px;">
                     <div class="circle" style="position: absolute;">
-                        <span class="circle__content">VIP 1</span>
+                        <span class="circle__content">VIP {{Auth::user()->vip}}</span>
                       </div>
                     <div class="w-100 h-100" id="chg-avt" style="background-color: rgba(24, 24, 24, 0.726); border-radius: 50%;">
                             <i class="fa fa-pencil text-white" style="font-size: 3rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" aria-hidden="true"></i>
@@ -47,35 +47,24 @@
             </a>
         </div>
         <div class="col-lg-12 text-center mt-2">
-            <input id="edit-fn" style="font-size: 2em" class="text-center text-primary" style="font-family: 'Lobster', cursive!important; outline: none; border: 0;" disabled value="Nguyễn Minh Phương">
+            <input id="edit-fn" style="font-size: 2em" class="text-center text-primary" style="font-family: 'Lobster', cursive!important; outline: none; border: 0;" disabled value="{{Auth::user()->fullname}}">
             <span class="fa fa-pencil display-4" id="e-fn-pen"></span>
         </div>
         <div class="col-lg-12 mt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="phuongnguyen">
-                    </div>
-                    <div class="col-lg-6 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="0389902073">
+                    <div class="col-lg-4 pt-2 pb-2">
+                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{{Auth::user()->username}}">
                     </div>
                     <div class="col-lg-4 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="18">
+                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{{Auth::user()->phone}}">
                     </div>
                     <div class="col-lg-4 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="Nam">
+                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{{Auth::user()->birthday}}">
                     </div>
-                    <div class="col-lg-4 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="25/11/1999">
+                    <div class="col-lg-12 pt-2 pb-2">
+                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{{Auth::user()->address}}">
                     </div>
-                    <div class="col-lg-4 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="TP Hồ Chí Minh">
-                    </div>
-                    <div class="col-lg-4 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="Gò Vấp">
-                    </div>
-                    <div class="col-lg-4 pt-2 pb-2">
-                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="Phường 13">
                     </div>
                 </div>
             </div>
@@ -98,37 +87,21 @@
                 </div>
                 <div class="modal-body">
                   <form class="needs-validation row" novalidate>
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-12">
                       <label for="exampleInputEmail1">Username</label>
-                      <input type="text" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Username" value="phuongnguyen" required disabled>
+                      <input type="text" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Username" value="{{Auth::user()->username}}" required disabled>
                     </div>
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-12">
                       <label for="exampleInputPassword1">Số điện thoại</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="So Dien Thoai" value="0389902073" required>
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="So Dien Thoai" value="{{Auth::user()->phone}}" required>
                     </div>
-                    <div class="form-group col-lg-4">
-                        <label for="exampleInputEmail1">Tuổi</label>
-                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="age" value="18" required>
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label for="exampleInputPassword1">Giới tính</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="sex" value="Nam" required>
-                    </div>
-                    <div class="form-group col-lg-4">
+                    <div class="form-group col-lg-12">
                         <label for="exampleInputEmail1">Ngày sinh</label>
-                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="birthday" value="25/11/1999" required>
+                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="birthday" value="{{Auth::user()->birthday}}" required>
                     </div>
-                    <div class="form-group col-lg-4">
-                        <label for="exampleInputPassword1">Thành phố</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="city" value="TP Hồ Chí Mimnh" required>
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label for="exampleInputEmail1">Quận/Huyện</label>
-                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="birthday" value="Gò Vấp" required>
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label for="exampleInputPassword1">Phường</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="city" value="Phường 13" required>
+                    <div class="form-group col-lg-12">
+                        <label for="exampleInputPassword1">Địa chỉ</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="city" value="{{Auth::user()->address}}" required>
                       </div>
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-info">Cập nhật</button>
