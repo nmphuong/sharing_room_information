@@ -40,7 +40,9 @@ a.cls:not(.collapsed):after {
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18 py-4 mb-4">
                     <div class="text align-items-center">
-                        <strong class="number" data-number="13256">0</strong>
+                    @foreach ($numPhongTro as $npt)
+                        <strong class="number" data-number="{{$npt->numPhongTro}}">0</strong>
+                    @endforeach
                         <span>Phòng trọ</span>
                     </div>
                 </div>
@@ -48,7 +50,9 @@ a.cls:not(.collapsed):after {
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18 py-4 mb-4">
                     <div class="text align-items-center">
-                        <strong class="number" data-number="2456">0</strong>
+                        @foreach ($numCanHo as $nch)
+                            <strong class="number" data-number="{{$nch->numCanHo}}">0</strong>
+                        @endforeach
                         <span>Căn hộ</span>
                     </div>
                 </div>
@@ -56,7 +60,9 @@ a.cls:not(.collapsed):after {
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18 py-4 mb-4">
                     <div class="text align-items-center">
-                        <strong class="number" data-number="159">0</strong>
+                        @foreach ($numHouse as $nh)
+                            <strong class="number" data-number="{{$nh->numHouse}}">0</strong>
+                        @endforeach
                         <span>Nhà nguyên căn</span>
                     </div>
                 </div>
@@ -64,7 +70,9 @@ a.cls:not(.collapsed):after {
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18 py-4 mb-4">
                     <div class="text align-items-center">
-                        <strong class="number" data-number="4235">0</strong>
+                        @foreach ($numOGhep as $nog)
+                            <strong class="number" data-number="{{$nog->numOGhep}}">0</strong>
+                        @endforeach
                         <span>Ở ghép</span>
                     </div>
                 </div>
@@ -81,19 +89,27 @@ a.cls:not(.collapsed):after {
             </div>
         </div>
         <div class="row">
+        @foreach ($roomOfUserVip as $roomVip)
             <div class="col-md-3 col-lg-2 ftco-animate">
                 <div class="staff"><a href="detail.html">
                     <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                        <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                        </div>
+                    <?php 
+                        $image = str_replace("[","",$roomVip->image);
+                        $image = str_replace("]","",$image);
+                        $image = str_replace("`","",$image);
+                        $dirs = explode(',', $image);
+                        //dd($roomVip->image ,$dirs); 
+                    ?>
+                        <div class="img align-self-stretch" style="background-image: url({{$dirs[0]}});"> </div>
                     </div></a>
                     <div class="text pb-4 text-center">
                         <div class="faded">
-                            <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
+                            <p class="mb-2 price text-danger"><span class="price text-danger">{{number_format($roomVip->price, 0, '', ',')}}</span><u>
                                     đ</u></p>
-                            <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                            <span class="position">Minh Phuong</span><span> - </span>
-                            <span class="position">TP HCM</span><br>
+                            <div class="p-1" style="overflow: hidden; line-height: 1.5em; height: 3em;"><a href="#">{{$roomVip->title}}</a></div>
+                            <p style="line-height: 1em;" class="mb-0">...</p>
+                            <span class="position">{{$roomVip->fullname}}</span><span> - </span>
+                            <span class="position">{{$roomVip->_name}}</span><br>
                             <a href="#" class="btn btn-primary">Xem</a>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate m-0"><a href="#"
@@ -104,266 +120,7 @@ a.cls:not(.collapsed):after {
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-2 ftco-animate">
-                <div class="staff"><a href="detail.html">
-                    <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                        <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                        </div>
-                    </div></a>
-                    <div class="text pb-4 text-center">
-                        <div class="faded">
-                            <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                    đ</u></p>
-                            <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                            <span class="position">Minh Phuong</span><span> - </span>
-                            <span class="position">TP HCM</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
-                            <ul class="ftco-social text-center">
-                                <li class="ftco-animate m-0"><a href="#"
-                                        class="d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-heart"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-2 ftco-animate">
-                <div class="staff"><a href="detail.html">
-                    <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                        <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                        </div>
-                    </div></a>
-                    <div class="text pb-4 text-center">
-                        <div class="faded">
-                            <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                    đ</u></p>
-                            <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                            <span class="position">Minh Phuong</span><span> - </span>
-                            <span class="position">TP HCM</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
-                            <ul class="ftco-social text-center">
-                                <li class="ftco-animate m-0"><a href="#"
-                                        class="d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-heart"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-2 ftco-animate">
-                <div class="staff"><a href="detail.html">
-                    <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                        <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                        </div>
-                    </div></a>
-                    <div class="text pb-4 text-center">
-                        <div class="faded">
-                            <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                    đ</u></p>
-                            <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                            <span class="position">Minh Phuong</span><span> - </span>
-                            <span class="position">TP HCM</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
-                            <ul class="ftco-social text-center">
-                                <li class="ftco-animate m-0"><a href="#"
-                                        class="d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-heart"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-2 ftco-animate">
-                <div class="staff"><a href="detail.html">
-                    <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                        <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                        </div>
-                    </div></a>
-                    <div class="text pb-4 text-center">
-                        <div class="faded">
-                            <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                    đ</u></p>
-                            <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                            <span class="position">Minh Phuong</span><span> - </span>
-                            <span class="position">TP HCM</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
-                            <ul class="ftco-social text-center">
-                                <li class="ftco-animate m-0"><a href="#"
-                                        class="d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-heart"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-2 ftco-animate">
-                <div class="staff"><a href="detail.html">
-                    <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                        <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                        </div>
-                    </div></a>
-                    <div class="text pb-4 text-center">
-                        <div class="faded">
-                            <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                    đ</u></p>
-                            <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                            <span class="position">Minh Phuong</span><span> - </span>
-                            <span class="position">TP HCM</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
-                            <ul class="ftco-social text-center">
-                                <li class="ftco-animate m-0"><a href="#"
-                                        class="d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-heart"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-12 ftco-animate">
-                <div class="collapse" id="newsspecial">
-                    <div class="row">
-                        <div class="col-md-3 col-lg-2 ftco-animate">
-                            <div class="staff"><a href="detail.html">
-                                <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                                    <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                                    </div>
-                                </div></a>
-                                <div class="text pb-4 text-center">
-                                    <div class="faded">
-                                        <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                                đ</u></p>
-                                        <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                                        <span class="position">Minh Phuong</span><span> - </span>
-                                        <span class="position">TP HCM</span><br>
-                                        <a href="#" class="btn btn-primary">Xem</a>
-                                        <ul class="ftco-social text-center">
-                                            <li class="ftco-animate m-0"><a href="#"
-                                                    class="d-flex align-items-center justify-content-center"><span
-                                                        class="fa fa-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-2 ftco-animate">
-                            <div class="staff"><a href="detail.html">
-                                <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                                    <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                                    </div>
-                                </div></a>
-                                <div class="text pb-4 text-center">
-                                    <div class="faded">
-                                        <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                                đ</u></p>
-                                        <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                                        <span class="position">Minh Phuong</span><span> - </span>
-                                        <span class="position">TP HCM</span><br>
-                                        <a href="#" class="btn btn-primary">Xem</a>
-                                        <ul class="ftco-social text-center">
-                                            <li class="ftco-animate m-0"><a href="#"
-                                                    class="d-flex align-items-center justify-content-center"><span
-                                                        class="fa fa-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-2 ftco-animate">
-                            <div class="staff"><a href="detail.html">
-                                <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                                    <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                                    </div>
-                                </div></a>
-                                <div class="text pb-4 text-center">
-                                    <div class="faded">
-                                        <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                                đ</u></p>
-                                        <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                                        <span class="position">Minh Phuong</span><span> - </span>
-                                        <span class="position">TP HCM</span><br>
-                                        <a href="#" class="btn btn-primary">Xem</a>
-                                        <ul class="ftco-social text-center">
-                                            <li class="ftco-animate m-0"><a href="#"
-                                                    class="d-flex align-items-center justify-content-center"><span
-                                                        class="fa fa-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-2 ftco-animate">
-                            <div class="staff"><a href="detail.html">
-                                <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                                    <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                                    </div>
-                                </div></a>
-                                <div class="text pb-4 text-center">
-                                    <div class="faded">
-                                        <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                                đ</u></p>
-                                        <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                                        <span class="position">Minh Phuong</span><span> - </span>
-                                        <span class="position">TP HCM</span><br>
-                                        <a href="#" class="btn btn-primary">Xem</a>
-                                        <ul class="ftco-social text-center">
-                                            <li class="ftco-animate m-0"><a href="#"
-                                                    class="d-flex align-items-center justify-content-center"><span
-                                                        class="fa fa-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-2 ftco-animate">
-                            <div class="staff"><a href="detail.html">
-                                <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                                    <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                                    </div>
-                                </div></a>
-                                <div class="text pb-4 text-center">
-                                    <div class="faded">
-                                        <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                                đ</u></p>
-                                        <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                                        <span class="position">Minh Phuong</span><span> - </span>
-                                        <span class="position">TP HCM</span><br>
-                                        <a href="#" class="btn btn-primary">Xem</a>
-                                        <ul class="ftco-social text-center">
-                                            <li class="ftco-animate m-0"><a href="#"
-                                                    class="d-flex align-items-center justify-content-center"><span
-                                                        class="fa fa-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-2 ftco-animate">
-                            <div class="staff"><a href="detail.html">
-                                <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
-                                    <div class="img align-self-stretch" style="background-image: url(images/news_hot.jpg);">
-                                    </div>
-                                </div></a>
-                                <div class="text pb-4 text-center">
-                                    <div class="faded">
-                                        <p class="mb-2 price text-danger"><span class="price text-danger">3.000.000</span><u>
-                                                đ</u></p>
-                                        <h5><a href="#">Nha tro cho thue quan 12</a></h5>
-                                        <span class="position">Minh Phuong</span><span> - </span>
-                                        <span class="position">TP HCM</span><br>
-                                        <a href="#" class="btn btn-primary">Xem</a>
-                                        <ul class="ftco-social text-center">
-                                            <li class="ftco-animate m-0"><a href="#"
-                                                    class="d-flex align-items-center justify-content-center"><span
-                                                        class="fa fa-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="collapsed cls" data-toggle="collapse" href="#newsspecial" style="float: right;" aria-expanded="false" aria-controls="collapseSummary"></a>
-            </div>
+        @endforeach
         </div>
     </div>
 </section>

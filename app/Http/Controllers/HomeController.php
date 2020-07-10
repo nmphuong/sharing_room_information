@@ -18,7 +18,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         if(Session::get('session_logged_in') == null)
         return redirect('/logout');
@@ -26,8 +26,13 @@ class HomeController extends Controller
             $province['province'] = Province::all();
             $district['district'] = DB::select('select * from district where _province_id = 1');
             $ward['ward'] =  [];
-            
-            return view('index')->with($province)->with($district)->with($ward);
+            $roomOfUserVip['roomOfUserVip'] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and users.id = user and district.id = district order by day_post');
+            $numPhongTro['numPhongTro'] = DB::select('select count(*) as numPhongTro from phong_tro where type = 1');
+            $numCanHo['numCanHo'] = DB::select('select count(*) as numCanHo from phong_tro where type = 2');
+            $numHouse['numHouse'] = DB::select('select count(*) as numHouse from phong_tro where type = 3');
+            $numOGhep['numOGhep'] = DB::select('select count(*) as numOGhep from phong_tro where type = 4');
+            //dd($numPhongTro);
+            return view('index')->with($province)->with($district)->with($ward)->with($roomOfUserVip)->with($numPhongTro)->with($numCanHo)->with($numHouse)->with($numOGhep);
         }
     }
 

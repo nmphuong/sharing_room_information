@@ -29,7 +29,6 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/','HomeController@index' );
     Route::get('get-district','HomeController@getDistrict' );
     Route::get('get-ward','HomeController@getWard');
-    Route::get('get-product', 'HomeController@getProductVip');
 });
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );
