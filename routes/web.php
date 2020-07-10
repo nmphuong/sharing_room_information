@@ -17,8 +17,8 @@ Route::group(['prefix' => 'login'], function () {
 Route::group(['prefix' => 'register'], function () {
     Route::post('/','LoginController@create' );
 });
+
 Route::group(['prefix' => '/'], function () {
-    Route::get('/','HomeController@index' );
     Route::get('/logout', function() {
         Session::forget('session_logged_in');
             if(!Session::has('session_logged_in'))
@@ -26,7 +26,12 @@ Route::group(['prefix' => '/'], function () {
                 return redirect('/login');
             }
         });
+    Route::get('/','HomeController@index' );
+    Route::get('get-district','HomeController@getDistrict' );
+    Route::get('get-ward','HomeController@getWard');
+    Route::get('get-product', 'HomeController@getProductVip');
 });
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );
+    Route::post('/','ProfileController@store' );
 });

@@ -1,3 +1,5 @@
+//const { get } = require("jquery");
+
 (function($) {
 
 	"use strict";
@@ -220,5 +222,65 @@
   $('[data-toggle="popover"]').popover()
 	$('[data-toggle="tooltip"]').tooltip()
 
+
+	$('select#district').change(function(ev){
+		ev.preventDefault();
+		let $this = $(this), value = this.value, $province = $('select#province'), province = $province.val();
+		let options = {
+			url: 'http://localhost/lar-53/public/get-ward',
+			dataType: 'html',
+			type: 'get',
+			data:  {district: value},
+			beforeSend: function(jqXHR, settings){},
+			success: function(response, textStatus, jqXHR){
+				$('select#ward').html(response);
+			},
+			error: function(  jqXHR, textStatus, errorThrown){
+				return;
+			},
+			complete: function(){
+				return;
+			}
+		}
+		$.ajax(options);
+	});
+	$('select#province').change(function(ev){
+		ev.preventDefault();
+		let $this = $(this), value = this.value, $province = $('select#province'), province = $province.val();
+		let ward = {
+			url: 'http://localhost/lar-53/public/get-ward',
+			dataType: 'html',
+			type: 'get',
+			data:  {district: 0},
+			beforeSend: function(jqXHR, settings){},
+			success: function(response, textStatus, jqXHR){
+				$('select#ward').html(response);
+			},
+			error: function(  jqXHR, textStatus, errorThrown){
+				return;
+			},
+			complete: function(){
+				return;
+			}
+		}
+		$.ajax(ward);
+		let options = {
+			url: 'http://localhost/lar-53/public/get-district',
+			dataType: 'html',
+			type: 'get',
+			data: {province: value},
+			beforeSend: function(jqXHR, settings){},
+			success: function(response, textStatus, jqXHR){
+				$('select#district').html(response);
+			},
+			error: function(  jqXHR, textStatus, errorThrown){
+				return;
+			},
+			complete: function(){
+				return;
+			}
+		}
+		$.ajax(options);
+	});
 })(jQuery);
 
