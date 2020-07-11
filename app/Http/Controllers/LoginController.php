@@ -52,7 +52,7 @@ class LoginController extends Controller
         $user->confirmation = 0;
         $user->save();
         //return Redirect::to('layouts.home',compact('message'));
-        return redirect()->back()->with('popup_success_register', ' ');
+        return back()->with('popup_success_register', ' ');
     }
 
     /**

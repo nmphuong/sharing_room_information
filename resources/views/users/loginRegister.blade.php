@@ -123,12 +123,16 @@
                                     <h3 class="register-heading">Đăng hập</h3>
                                     <div class="row register-form">
                                         <div class="col-md-12 justify-content-center">
-                                            @if (session('invalidaccount'))
-                                                <div class="alert alert-danger text-center">
-                                                    {{ session('invalidaccount') }}
-                                                </div>
-                                            @endif
-                                            
+                                        @if (session('invalidaccount'))
+                                            <div class="alert alert-danger text-center">
+                                                {{ session('invalidaccount') }}
+                                            </div>
+                                        @endif
+                                        @if (session('dupticateaccount'))
+                                            <div class="alert alert-danger text-center col-12">
+                                                {{ session('dupticateaccount') }}
+                                            </div>
+                                        @endif
                                         @if (session('popup_success_register'))
                                         <div id="popup_success_register" class="modal d-block" role="dialog">
                                             <div class="modal-dialog">
@@ -163,12 +167,6 @@
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <h3 class="register-heading">Đăng ký</h3>
                                     <div class="row register-form">
-                                        
-                                        @if (session('dupticateaccount'))
-                                        <div class="alert alert-danger text-center col-12">
-                                        {{ session('dupticateaccount') }}
-                                        </div>
-                                        @endif
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text" name="fullname" class="form-control" placeholder="Tên đầy đủ" value="" />

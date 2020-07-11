@@ -26,13 +26,16 @@ class HomeController extends Controller
             $province['province'] = Province::all();
             $district['district'] = DB::select('select * from district where _province_id = 1');
             $ward['ward'] =  [];
-            $roomOfUserVip['roomOfUserVip'] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and users.id = user and district.id = district order by day_post');
+            $roomOfUserVip['roomOfUserVip'] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and users.id = user and district.id = district order by day_post desc limit 12;');
             $numPhongTro['numPhongTro'] = DB::select('select count(*) as numPhongTro from phong_tro where type = 1');
             $numCanHo['numCanHo'] = DB::select('select count(*) as numCanHo from phong_tro where type = 2');
             $numHouse['numHouse'] = DB::select('select count(*) as numHouse from phong_tro where type = 3');
             $numOGhep['numOGhep'] = DB::select('select count(*) as numOGhep from phong_tro where type = 4');
-            //dd($numPhongTro);
-            return view('index')->with($province)->with($district)->with($ward)->with($roomOfUserVip)->with($numPhongTro)->with($numCanHo)->with($numHouse)->with($numOGhep);
+            $roomOfNew['roomOfNew'] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 0) and users.id = user and district.id = district order by day_post desc limit 12;');
+            $roomOfFavorite['roomOfFavorite'] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district order by favorite desc limit 12;');
+            $review['review'] = DB::select('select review.*, users.fullname, users.avatar from review, users where users.id = user ');
+            //dd($roomOfFavorite);
+            return view('index')->with($province)->with($district)->with($ward)->with($roomOfUserVip)->with($roomOfNew)->with($roomOfFavorite)->with($numPhongTro)->with($numCanHo)->with($numHouse)->with($numOGhep)->with($review);
         }
     }
 
