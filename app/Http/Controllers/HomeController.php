@@ -24,7 +24,7 @@ class HomeController extends Controller
         return redirect('/logout');
         else {
             $province['province'] = Province::all();
-            $district['district'] = DB::select('select * from district where _province_id = 1');
+            $district['district'] = [];
             $ward['ward'] =  [];
             $roomOfUserVip['roomOfUserVip'] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and users.id = user and district.id = district order by day_post desc limit 12;');
             $numPhongTro['numPhongTro'] = DB::select('select count(*) as numPhongTro from phong_tro where type = 1');

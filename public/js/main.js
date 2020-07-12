@@ -282,5 +282,21 @@
 		}
 		$.ajax(options);
 	});
+	$('#add_element_img').click(function() {
+        $('#add_img').append('<input name="image_post" type="file" class="form-control-file" accept="image/*" />'); 
+	});
+	jQuery.validator.setDefaults({
+		debug: true,
+		success: "valid"
+	  });
+	  $( "#form-add-post" ).validate({
+		rules: {
+		  field: {
+			required: true,
+			extension: "jpg|png"
+		  }
+		}
+	  });
+	  
 })(jQuery);
 

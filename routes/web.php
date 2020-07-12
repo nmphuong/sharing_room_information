@@ -34,3 +34,8 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );
     Route::post('/','ProfileController@store' );
 });
+Route::group(['prefix' => 'post'], function () {
+    Route::get('/create-post','PostController@createPost' );
+    Route::get('get-district','PostController@getDistrict' );
+    Route::get('get-ward','PostController@getWard');
+});
