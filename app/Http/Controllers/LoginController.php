@@ -32,9 +32,6 @@ class LoginController extends Controller
      */
     public function create(Request $request)
     {
-        //$users = $request->only('fullname','username', 'password','re_password','birthday','address', 'phone', 'male', 'female');
-        //DB::insert('insert into users (username, password, fullname, avatar, birthday, phone, address, vip, status, role, confirmation, remember_token, created_at, updated_at) values ('+$request->username+ ','+$request->passowrd+ ','+$request->fullname+ ','+ ' ' +' '+$request->birthday+ '' +$request->phone+ ',' +$request->address+ ',0,1,3,0)');
-        //dd($users);
         if(DB::table('users')->where('username', $request->username)->first()){
             return redirect()->back()->with('dupticateaccount', 'Tài khoản đã tồn tại!');
         }

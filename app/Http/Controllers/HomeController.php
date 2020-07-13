@@ -95,6 +95,7 @@ class HomeController extends Controller
 
     public function getWard (Request $request){
         $district = $request->district;
+        dd($district);
         $ward['ward'] = DB::select('select * from ward where _district_id =' .$district);
         return view('ward')->with($ward);
     }
