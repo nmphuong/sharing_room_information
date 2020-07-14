@@ -144,7 +144,7 @@ a.cls:not(.collapsed):after {
                             $dirsnew = explode(',', $imagenew);
                             //dd($roomVip->image ,$dirs); 
                         ?>
-                            <div class="img align-self-stretch" style="background-image: url({{$dirsnew[0]}}); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                            <div class="img align-self-stretch" style="background-image: url({{asset('/uploads/'.$dirsnew[0])}}); background-size: cover; background-position: center; background-repeat: no-repeat;">
                             </div>
                         </div></a>
                         <div class="text pb-4 text-center">

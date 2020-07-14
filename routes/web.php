@@ -36,6 +36,7 @@ Route::group(['prefix' => 'profile'], function () {
 });
 Route::group(['prefix' => 'post'], function () {
     Route::get('/create-post','PostController@createPost' );
+    Route::post('/create-post','PostController@create');
     Route::get('get-district','PostController@getDistrict' );
     Route::get('get-ward','PostController@getWard');
 });

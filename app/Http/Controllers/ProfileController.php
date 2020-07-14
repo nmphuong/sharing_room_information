@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Session;
 
 class ProfileController extends Controller
 {
@@ -13,7 +15,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view("users.user");
+        if(Session::get('session_logged_in') == null)
+            return redirect('/logout');
+        else {
+            return view("users.user");
+        }
     }
 
     /**

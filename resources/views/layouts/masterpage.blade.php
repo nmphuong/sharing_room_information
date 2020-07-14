@@ -38,7 +38,7 @@
 					<div class="col-md-8 d-md-flex mb-md-0 mb-3">
 						<form action="#" class="searchform order-lg-last w-100">
 							<div class="form-group d-flex">
-								<input type="text" class="form-control pl-3" placeholder="Tiềm kiếm...">
+								<input type="text" class="form-control pl-3" placeholder="Tìm kiếm...">
 								<button type="submit" placeholder="" class="form-control search"><span
 										class="fa fa-search"></span></button>
 							</div>
@@ -55,9 +55,10 @@
 							{{-- <a href="{{asset('/user')}}" class="col-5 mb-3 justify-content-center"> --}}
 							<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('{{Auth::user()->avatar}}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 								<div class="btn-group">
-									<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+									<button type="button" class="btn dropdown-toggle" style="color: transparent;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="{{asset('/profile')}}">{{Auth::user()->fullname}}</a>
+										{{-- <a class="dropdown-item" href="{{asset('/profile')}}">{{Auth::user()->fullname}}</a> --}}
+										<a class="dropdown-item" href="{{asset('/profile')}}">Thông tin cá nhân</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="{{asset('/logout')}}">Đăng xuất</a>
 									</div>

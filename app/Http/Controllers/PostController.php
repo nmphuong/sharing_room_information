@@ -7,6 +7,7 @@ use Session;
 use App\Province;
 use App\District;
 use App\Ward;
+use App\Post;
 use View;
 use DB;
 
@@ -53,9 +54,42 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //dd(Session::get('session_logged_in'));
+        //dd($request->request);
+        // $arr = [];
+        $input = $request->all();
+        $images = "[";
+        if($files = $request->file('image_post')){
+            foreach($files as $file){
+                $name = $file->getClientOriginalName();
+                $name = time().rand().substr($name, strrpos($name, '.', 1));
+                $file->move('uploads',$name);
+                $images = $images.$name.',';
+            }
+        }
+        $images = $images."]";
+        //'title', 'content', 'phone_number', 'image', 'user', 'city', 'ward', 'district', 'acreage', 'price', 'room_number', 'utilities', 'vip', 'favorite', 'type', 'status'
+        $post = new Post;
+        $post->title = $request->a_tt_post;
+        $post->content = $request->a_ct_post;
+        $post->phone_number = $request->a_p_post;
+        $post->image = $images;
+        $post->user = Session::get('session_logged_in')->id;
+        $post->city = $request->province;
+        $post->ward = $request->ward;
+        $post->district = $request->district;
+        $post->acreage = $request->a_dt_post;
+        $post->price = $request->a_price_post;
+        $post->room_number = 1;
+        $post->utilities = $request->a_ti_post;
+        $post->vip = $request->a_pn_post;
+        $post->favorite = 0;
+        $post->type = $request->a_type_post;
+        $post->status = 1;
+        $post->save();
+        return redirect("/");
     }
 
     /**
