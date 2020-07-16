@@ -10,7 +10,7 @@ use App\Ward;
 use View;
 use DB;
 
-class PostController extends Controller
+class ApprovalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,34 +20,14 @@ class PostController extends Controller
     public function index()
     {
         //
+        $province['province'] = Province::all();
+        $district['district'] = [];
+        $ward['ward'] =  [];
+        $approval['approval'] = DB::select("select phong_tro.*,users.fullname from  `phong_tro`, `users` where `user` in (select id from users) and users.id = user and phong_tro.status = 0 order by day_post");
+        //dd($approval);
+        return view('approval')->with($province)->with($district)->with($ward)->with($approval);
     }
 
-    public function createPost()
-    {
-        if(Session::get('session_logged_in') == null)
-        return redirect('/logout');
-        else {
-            $province['province'] = Province::all();
-            $district['district'] = [];
-            $ward['ward'] =  [];
-            $type_post['type_post'] = DB::select('select * from type_post');
-            return view("posts.addPost")->with($province)->with($district)->with($ward)->with($type_post);
-        }
-    }
-    
-    public function getWard (Request $request){
-        $district = $request->district;
-        $ward['ward'] = DB::select('select * from ward where _district_id =' .$district);
-        return view('ward')->with($ward);
-    }
-
-    public function getDistrict (Request $request){
-        // $province = $request->province;
-        // $district['district'] = DB::select('select * from district where _province_id =' .$province);
-        // $ward['ward'] = [];
-        // View::share('ward', $ward);
-        return view('district');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -113,6 +93,4 @@ class PostController extends Controller
     {
         //
     }
-
-  
 }

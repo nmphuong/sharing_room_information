@@ -36,9 +36,9 @@
 			<div class="col-md-9 order-md-last">
 				<div class="row">
 					<div class="col-md-8 d-md-flex mb-md-0 mb-3">
-						<form action="#" class="searchform order-lg-last w-100">
+						<form  method="get" action="{{asset('/search')}}" class="searchform order-lg-last w-100">
 							<div class="form-group d-flex">
-								<input type="text" class="form-control pl-3" placeholder="Tiềm kiếm...">
+								<input type="text" class="form-control pl-3" name="search" placeholder="Tim kiếm...">
 								<button type="submit" placeholder="" class="form-control search"><span
 										class="fa fa-search"></span></button>
 							</div>
@@ -57,8 +57,8 @@
 								<div class="btn-group">
 									<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="{{asset('/profile')}}">{{Auth::user()->fullname}}</a>
-										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="{{asset('/profile')}}">Thông tin cá nhân</a>
+										<a class="dropdown-item" href="{{asset('/approval')}}">Duyệt</a>
 										<a class="dropdown-item" href="{{asset('/logout')}}">Đăng xuất</a>
 									</div>
 								</div>

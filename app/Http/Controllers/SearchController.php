@@ -10,44 +10,26 @@ use App\Ward;
 use View;
 use DB;
 
-class PostController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $room = $request->search;
+        $province['province'] = Province::all();
+        $district['district'] = [];
+        $ward['ward'] =  [];
+        $result['result'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `title` like '%".$room."%' and `user` in (select id from users) and users.id = user and district.id = district order by day_post");
+        $review['review'] = DB::select('select review.*, users.fullname, users.avatar from review, users where users.id = user ');
+        $amount['amount'] = count($result['result']);
+        
+        return view("search")->with($province)->with($district)->with($ward)->with($result)->with($review)->with($amount);
     }
 
-    public function createPost()
-    {
-        if(Session::get('session_logged_in') == null)
-        return redirect('/logout');
-        else {
-            $province['province'] = Province::all();
-            $district['district'] = [];
-            $ward['ward'] =  [];
-            $type_post['type_post'] = DB::select('select * from type_post');
-            return view("posts.addPost")->with($province)->with($district)->with($ward)->with($type_post);
-        }
-    }
-    
-    public function getWard (Request $request){
-        $district = $request->district;
-        $ward['ward'] = DB::select('select * from ward where _district_id =' .$district);
-        return view('ward')->with($ward);
-    }
-
-    public function getDistrict (Request $request){
-        // $province = $request->province;
-        // $district['district'] = DB::select('select * from district where _province_id =' .$province);
-        // $ward['ward'] = [];
-        // View::share('ward', $ward);
-        return view('district');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -66,7 +48,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //    
     }
 
     /**
@@ -113,6 +95,4 @@ class PostController extends Controller
     {
         //
     }
-
-  
 }

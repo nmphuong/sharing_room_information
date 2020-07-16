@@ -117,4 +117,12 @@ class HomeController extends Controller
     {
         //
     }
+
+    /*public function getSearch(Request $request){
+        $room = phong_tro::where('title','like','%'.$request->key.'%')
+              ->orWhere('price',$request->key)
+              ->get(); 
+        return view('search',compact('room'));      
+    }*/
+   
 }
