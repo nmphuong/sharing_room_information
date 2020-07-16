@@ -39,3 +39,9 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('get-district','PostController@getDistrict' );
     Route::get('get-ward','PostController@getWard');
 });
+Route::group(['prefix' => 'search'], function () {
+    Route::get('/','SearchController@index' );
+});
+Route::group(['prefix' => 'approval'], function () {
+    Route::get('/','ApprovalController@index' );
+});
