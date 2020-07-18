@@ -6,35 +6,22 @@
         <caption></caption>
         <thead class="thead-dark">
             <tr class="col-12">
-                <th style=" width: 10%">Tiêu đề</th>
-                <th style=" width: 25%">Nội dung</th>
-                <th style=" width: 15%">Người đăng</th>
-                <th style=" width: 10%">SDT</th>
-                <th style=" width: 10%" >Tiện ích</th>
-                <th style=" width: 20%">Hình ảnh</th>
-                <th style=" width: 10%">Thao tác</th>
+                <th style=" width: 20%">Người đăng</th>
+                <th style=" width: 40%">Tiêu đề</th>
+                <th style=" width: 15%">SDT</th>
+                <th style=" width: 15%" >Giá</th>
+                <th style=" width: 10%" >Chi tiết</th>
             </tr>
         </thead>
         <tbody class="thead-light">
             @foreach($approval as $appro)
             <tr>
-                <td>{{$appro->title}}</td>
-                <td>{{$appro->content}}</td>
                 <td>{{$appro->fullname}}</td>
+                <td>{{$appro->title}}</td>
                 <td>{{$appro->phone_number}}</td>
-                <td>{{$appro->utilities}}</td>
-                <?php 
-                        $image = str_replace("[","",$appro->image);
-                        $image = str_replace("]","",$image);
-                        $image = str_replace("`","",$image);
-                        $dirs = explode(',', $image);
-                        //dd($room->image ,$dirs); 
-                    ?>
-                <td>@for($i = 0; $i < count($dirs); $i++)<img src="{{$dirs[$i]}}" class="w-50" alt="">@endfor</td>
+                <td>{{$appro->price}}</td>            
                 <td class="text-center">
-                    <button type="button" class="fa fa-check btn btn-outline-success"></button>
-                    <button type="button" class="fa fa-comments btn btn-outline-warning"></button>
-                   <button type="button" class="fa fa-times btn btn-outline-danger"></button>                
+                    <a type="button" href="{{asset('approval/detail'.$appro->id)}}" class="btn btn-outline-success fa fa-eye"></a>                
                </td>
             </tr>
             @endforeach

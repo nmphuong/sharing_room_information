@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Session;
+use App\Room;
 use App\Province;
 use App\District;
 use App\Ward;
@@ -48,6 +49,18 @@ class HomeController extends Controller
     {
         //
     }
+
+     public function getShoww($id)
+    {
+        $data = Room::find($id);
+       
+        
+
+        // $detail['detail'] = DB::select("select phong_tro.*,users.fullname from  `phong_tro`, `users` where `user` in (select id from users) and users.id = user and phong_tro.status = 0 order by day_post");
+        return view('info',['data'=>$data]);
+    
+    }
+
 
     /**
      * Store a newly created resource in storage.

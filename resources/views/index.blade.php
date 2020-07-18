@@ -110,7 +110,7 @@ a.cls:not(.collapsed):after {
                             <p style="line-height: 1em;" class="mb-0">...</p>
                             <span class="position">{{$roomVip->fullname}}</span><span> - </span>
                             <span class="position">{{$roomVip->_name}}</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
+                            <a href="{{asset('/info'.$roomVip->id)}}" class="btn btn-primary">Xem</a>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate m-0"><a href="#"
                                         class="d-flex align-items-center justify-content-center"><span
@@ -155,7 +155,7 @@ a.cls:not(.collapsed):after {
                             <p style="line-height: 1em;" class="mb-0">...</p>
                             <span class="position">{{$roomnew->fullname}}</span><span> - </span>
                             <span class="position">{{$roomnew->_name}}</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
+                            <a href="{{asset('/info')}}" class="btn btn-primary">Xem</a>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate m-0"><a href="#"
                                         class="d-flex align-items-center justify-content-center"><span
@@ -203,7 +203,7 @@ a.cls:not(.collapsed):after {
                             <a href="#" class="btn btn-primary">Xem</a>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate m-0">
-                                    <a href="#" class="d-flex align-items-center justify-content-center">
+                                    <a href="{{asset('/info')}}" class="d-flex align-items-center justify-content-center">
                                     <span class="fa fa-heart"></span></a>
                                 </li>
                                 <li class="ftco-animate m-0 fadeInUp ftco-animated">

@@ -29,6 +29,8 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/','HomeController@index' );
     Route::get('get-district','HomeController@getDistrict' );
     Route::get('get-ward','HomeController@getWard');
+
+    Route::get('/info{id}','HomeController@getShoww' );
 });
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );
@@ -44,4 +46,16 @@ Route::group(['prefix' => 'search'], function () {
 });
 Route::group(['prefix' => 'approval'], function () {
     Route::get('/','ApprovalController@index' );
+    Route::get('/detail{id}','ApprovalController@getShow' );
+    Route::post('/detail/{id}','ApprovalController@postShow' );
+});
+
+
+//Route::group(['prefix' => 'detail'], function () {
+//    Route::get('/','DetailController@index' );
+//});
+
+
+Route::group(['prefix' => 'info'], function () {
+    Route::get('/','InfoController@index' );
 });

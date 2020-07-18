@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Province;
-use App\Room;
 use App\District;
 use App\Ward;
 use View;
 use DB;
 
-class ApprovalController extends Controller
+
+class DetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,13 +21,11 @@ class ApprovalController extends Controller
     public function index()
     {
         //
-        
         $province['province'] = Province::all();
         $district['district'] = [];
         $ward['ward'] =  [];
-        $approval['approval'] = DB::select("select phong_tro.*,users.fullname from  `phong_tro`, `users` where `user` in (select id from users) and users.id = user and phong_tro.status = 0 order by day_post");
-        //dd($approval);
-        return view('approval')->with($province)->with($district)->with($ward)->with($approval);
+        $detail['detail'] = DB::select("select phong_tro.*,users.fullname from  `phong_tro`, `users` where `user` in (select id from users) and users.id = user and phong_tro.status = 0 order by day_post");
+        return view("detail")->with($province)->with($district)->with($ward)->with($detail);
     }
 
     /**
@@ -38,21 +36,6 @@ class ApprovalController extends Controller
     public function create()
     {
         //
-    }
-
-    public function getShow($id)
-    {
-        $data = Room::find($id);
-        return view('detail',['data'=>$data]);
-    
-    }
-
-    public function postShow($id)
-    {
-        $data = Room::find($id);
-        $change['change'] = DB::update("update phong_tro set status=1");
-        return view('approval',['data'=>$data]);
-    
     }
 
     /**
