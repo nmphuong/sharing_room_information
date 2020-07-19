@@ -20,17 +20,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if(Session::get('session_logged_in') == null)
-            Auth::user()->avatar = config('constant.imagedefault');
-        else {
-            $avatar = Session::get('session_logged_in')->avatar;
-        }
-        //dd(Auth::user()->avatar);
         $province['province'] = Province::all();
         $district['district'] = [];
         $ward['ward'] =  [];
+        //dd($province);
         $roomOfUserVip['roomOfUserVip'] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and users.id = user and district.id = district order by day_post desc limit 12;');
         $numPhongTro['numPhongTro'] = DB::select('select count(*) as numPhongTro from phong_tro where type = 1');
         $numCanHo['numCanHo'] = DB::select('select count(*) as numCanHo from phong_tro where type = 2');
@@ -101,14 +96,15 @@ class HomeController extends Controller
     public function getWard (Request $request){
         $district = $request->district;
         $ward['ward'] = DB::select('select * from ward where _district_id =' .$district);
+        //$roomOfUserVip["roomOfUserVip"] = DB::select('select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and users.id = user and district = ' .$district. ' and district.id = district order by day_post desc limit 12;');
+        
+        //return view('new_special')->with($roomOfUserVip);
         return view('ward')->with($ward);
     }
 
     public function getDistrict (Request $request){
         $province = $request->province;
         $district['district'] = DB::select('select * from district where _province_id =' .$province);
-        $ward['ward'] = [];
-        View::share('ward', $ward);
         return view('district')->with($district);
     }
 

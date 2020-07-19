@@ -45,7 +45,7 @@
                 </div>
                 <div class="dtich col-lg-4">
                     <label for="">Diện tích (m<sup>2</sup>)</label>
-                    <input required type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || " name="a_dt_post" placeholder="20.5..." class="form-control col-12">
+                    <input required type="number" step="0.01" name="a_dt_post" placeholder="20.5..." class="form-control col-12">
                 </div>
                 <div class="tien-ich col-lg-6">
                     <label for="">Tiện ích</label>

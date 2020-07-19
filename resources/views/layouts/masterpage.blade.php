@@ -53,7 +53,15 @@
 					<div class="col-md-2">
 						<div class="row d-flex">
 							{{-- <a href="{{asset('/user')}}" class="col-5 mb-3 justify-content-center"> --}}
-							<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('{{Auth::user()->avatar}}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+							<?php 
+								if(Auth::user() == null || Auth::user()->avatar == null){
+									$avatar = "https://www.thehumanenterprise.com.au/wp-content/uploads/2017/06/Empty-Profile-Testimonials-300x300.jpg";
+								}
+								else {
+									$avatar = Auth::user()->avatar;
+								}
+							?>
+							<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('{{$avatar}}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 								<div class="btn-group">
 									<button type="button" class="btn dropdown-toggle" style="color: transparent;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 									<div class="dropdown-menu">

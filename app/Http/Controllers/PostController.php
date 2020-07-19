@@ -26,7 +26,7 @@ class PostController extends Controller
     public function createPost()
     {
         if(Session::get('session_logged_in') == null)
-        return redirect('/logout');
+            return redirect('/logout');
         else {
             $province['province'] = Province::all();
             $district['district'] = [];
@@ -74,7 +74,7 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->a_tt_post;
         $post->content = $request->a_ct_post;
-        $post->phone_number = $request->a_p_post;
+        $post->phone_number = '+84'.$request->a_p_post;
         $post->image = $images;
         $post->user = Session::get('session_logged_in')->id;
         $post->city = $request->province;

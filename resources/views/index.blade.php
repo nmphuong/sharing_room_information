@@ -88,12 +88,14 @@ a.cls:not(.collapsed):after {
                 <h3 style="font-family: 'Lobster', cursive!important;" class="text-danger f-arial">Tin Nổi Bật</h3>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="new_special" name="new_special">
+        
         @foreach ($roomOfUserVip as $roomVip)
             <div class=" col-6 col-md-3 col-lg-2 ftco-animate">
                 <div class="staff"><a href="detail.html">
                     <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
                     <?php 
+                    //dd($roomOfUserVip);
                         $image = str_replace("[","",$roomVip->image);
                         $image = str_replace("]","",$image);
                         $image = str_replace("`","",$image);

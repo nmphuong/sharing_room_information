@@ -35,7 +35,15 @@
         </div>
         <div class="col-lg-12 justify-content-center">
             <a href="#">
-                <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{Auth::user()->avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 250px; height: 250px;">
+            <?php 
+								if(Auth::user() == null || Auth::user()->avatar == null){
+									$avatar = "https://www.thehumanenterprise.com.au/wp-content/uploads/2017/06/Empty-Profile-Testimonials-300x300.jpg";
+								}
+								else {
+									$avatar = Auth::user()->avatar;
+								}
+							?>
+                <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 250px; height: 250px;">
                     <div class="circle" style="position: absolute;">
                         <span class="circle__content">VIP {{Auth::user()->vip}}</span>
                       </div>

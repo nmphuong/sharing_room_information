@@ -120,7 +120,7 @@
                         <form action="login" method="post" role="form">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <h3 class="register-heading">Đăng hập</h3>
+                                    <h3 class="register-heading">Đăng nhập</h3>
                                     <div class="row register-form">
                                         <div class="col-md-12 justify-content-center">
                                         @if (session('invalidaccount'))
@@ -146,10 +146,13 @@
                                         </div>
                                         @endif
                                             <div class="form-group col-lg-6 m-auto pb-3">
-                                            <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" value="{{old('username')}}" />
+                                            <input type="text" required name="username" class="form-control" placeholder="Tên đăng nhập" value="{{old('username')}}" />
                                             </div>
                                             <div class="form-group col-lg-6 m-auto">
-                                                <input type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                                <input  required type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                            </div>
+                                            <div class="form-group col-lg-6 m-auto">
+                                                <a class="nav-link" href="#">Quên mật khẩu?</a>
                                             </div>
                                             <div class="form-group col-lg-6 m-auto">
                                                 <input type="submit" class="btnLogin"  value="Đăng nhập"/>
@@ -169,16 +172,16 @@
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" name="fullname" class="form-control" placeholder="Tên đầy đủ" value="" />
+                                                <input type="text" required name="fullname" class="form-control" placeholder="Tên đầy đủ" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" value="" />
+                                                <input type="text" required name="username" class="form-control" placeholder="Tên đăng nhập" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                                <input type="password" required name="password" class="form-control" placeholder="Mật khẩu *" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="re_password" class="form-control"  placeholder="Nhập lại mật khẩu" value="" />
+                                                <input type="password" required name="re_password" class="form-control"  placeholder="Nhập lại mật khẩu" value="" />
                                             </div>
                                             <div class="form-group">
                                                 <div class="maxl">
@@ -195,13 +198,16 @@
                                         </div>
                                         <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="date" class="form-control" name="birthday"  placeholder="Sinh nhật" value="" />
+                                            <input type="date" class="form-control" name="birthday"  placeholder="Sinh nhật" value="<?php echo date('Y-m-d'); ?>" />
                                         </div>
                                             <div class="form-group">
-                                                <input type="text" name="address" class="form-control" placeholder="Địa chỉ" value="" />
+                                                <input type="text" required name="address" class="form-control" placeholder="Địa chỉ" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Số điện thoại" value="" />
+                                                <input type="text" required minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Số điện thoại" value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" required name="email" class="form-control" placeholder="Email" value="" />
                                             </div>
                                             <input type="submit" class="btnRegister"  value="Đăng ký"/>
                                         </div>

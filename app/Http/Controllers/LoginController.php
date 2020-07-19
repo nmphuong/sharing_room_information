@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use DB;
 use Session;
+use Mail;
 use Hash;
 use App\User;
 
@@ -32,26 +33,33 @@ class LoginController extends Controller
      */
     public function create(Request $request)
     {
-        //$users = $request->only('fullname','username', 'password','re_password','birthday','address', 'phone', 'male', 'female');
-        //DB::insert('insert into users (username, password, fullname, avatar, birthday, phone, address, vip, status, role, confirmation, remember_token, created_at, updated_at) values ('+$request->username+ ','+$request->passowrd+ ','+$request->fullname+ ','+ ' ' +' '+$request->birthday+ '' +$request->phone+ ',' +$request->address+ ',0,1,3,0)');
-        //dd($users);
+        //users.loginRegister
         if(DB::table('users')->where('username', $request->username)->first()){
             return redirect()->back()->with('dupticateaccount', 'Tài khoản đã tồn tại!');
         }
         $user = new User;
-
+        //dd($user);
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
         $user->fullname = $request->fullname;
         $user->birthday = $request->birthday;
         $user->phone = $request->phone;
         $user->address = $request->address;
+        $user->email = $request->email;
         $user->vip = 0;
         $user->status = 1;
         $user->role = 3;
         $user->confirmation = 0;
         $user->save();
         //return Redirect::to('layouts.home',compact('message'));
+        $input = $request->email;
+        $data = array('email'=>$input);
+        Mail::send(['html'=>'users.templateEmail'],$data, function($message) use ($data){
+            foreach($data as $d)
+            $message->to($d, '')->subject('Xác thực email');
+            
+            $message->from('noreply.sharingroom@gmail.com', "noreply.sharingroom@gmail.com");
+        });
         return back()->with('popup_success_register', ' ');
     }
 
