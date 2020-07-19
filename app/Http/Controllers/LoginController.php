@@ -53,7 +53,7 @@ class LoginController extends Controller
         $user->save();
         //return Redirect::to('layouts.home',compact('message'));
         $input = $request->email;
-        $data = array('email'=>$input);
+        $data = array('emailto'=>$input);
         Mail::send(['html'=>'users.templateEmail'],$data, function($message) use ($data){
             foreach($data as $d)
             $message->to($d, '')->subject('Xác thực email');

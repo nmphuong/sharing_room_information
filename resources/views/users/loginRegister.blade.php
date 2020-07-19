@@ -138,7 +138,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 <div class="modal-body">
-                                                    <p>Đăng ký tài khoản thành công vui lòng đăng nhập!</p>
+                                                    <p>Vui lòng xác thực email!</p>
                                                 </div>
                                                     <button id="close_popup_success_register" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
                                                 </div>

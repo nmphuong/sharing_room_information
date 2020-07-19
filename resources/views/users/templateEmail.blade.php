@@ -2,6 +2,6 @@
 		<div class="row justify-content-between text-center">
             <span>Vui xác thực email với liên kết bên dưới</span>
             <br>
-            <a class="nav-link" href={{asset('/register?email='.$email)}}>{{asset('/register?email='.$email)}}</a>
+            <a class="nav-link" href={{asset('/register?email='.$emailto)}}>{{asset('/register?email='.$emailto)}}</a>
         </div>
     </div>
