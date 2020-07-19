@@ -23,7 +23,7 @@
                         $dirs = explode(',', $image);
                         //dd($room->image ,$dirs); 
                     ?>
-                <td>@for($i = 0; $i < count($dirs); $i++)<img src="{{$dirs[$i]}}" class="w-50" alt="">@endfor</td> 
+                <td>@for($i = 0; $i < 4; $i++)<img src="{{$dirs[$i]}}" class="w-50" alt="">@endfor</td> 
               
         </div>
         <div class="content col-lg-12 mb-2">
@@ -36,7 +36,7 @@
                 <div class="col-lg-6">
                         <label for="">Người đăng</label>
                     <div class="phone d-flex">
-                        <p></p>
+                        <p>{{$data->content}}</p>
                     </div>
                 </div>            
                 <div class="col-lg-6">
