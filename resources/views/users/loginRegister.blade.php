@@ -133,6 +133,11 @@
                                                 {{ session('dupticateaccount') }}
                                             </div>
                                         @endif
+                                        @if (session('success_authenticate'))
+                                            <div class="alert alert-danger text-center col-12">
+                                                {{ session('success_authenticate') }}
+                                            </div>
+                                        @endif
                                         @if (session('popup_success_register'))
                                         <div id="popup_success_register" class="modal d-block" role="dialog">
                                             <div class="modal-dialog">

@@ -41,3 +41,6 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('get-district','PostController@getDistrict' );
     Route::get('get-ward','PostController@getWard');
 });
+Route::group(['prefix' => 'authenticate'], function () {
+    Route::get('/','AuthenticateController@index' );
+});

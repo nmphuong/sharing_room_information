@@ -34,7 +34,7 @@ class LoginController extends Controller
     public function create(Request $request)
     {
         //users.loginRegister
-        if(DB::table('users')->where('username', $request->username)->first()){
+        if(DB::table('users')->where('username', $request->username)->first() || DB::table('users')->where('email', $request->email)->first()){
             return redirect()->back()->with('dupticateaccount', 'Tài khoản đã tồn tại!');
         }
         $user = new User;
@@ -47,7 +47,7 @@ class LoginController extends Controller
         $user->address = $request->address;
         $user->email = $request->email;
         $user->vip = 0;
-        $user->status = 1;
+        $user->status = 0;
         $user->role = 3;
         $user->confirmation = 0;
         $user->save();
@@ -75,12 +75,16 @@ class LoginController extends Controller
         //$request->session()->forget($request->username);
         //dd(DB::table('users')->where('username', 'webmaster')->first());
         $users = $request->only('username', 'password');
-        if(Auth::attempt($users)){
-            Session::put('session_logged_in', DB::table('users')->where('username', $request->username)->first());
-            return redirect('/');
-        } else {
-            return redirect()->back()->with('invalidaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
+        $user = DB::table('users')->where('username', $request->username)->first();
+        if($user->status == 1){
+            if(Auth::attempt($users)){
+                Session::put('session_logged_in', DB::table('users')->where('username', $request->username)->first());
+                return redirect('/');
+            } else {
+                return redirect()->back()->with('invalidaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
+            }
         }
+        return redirect()->back()->with('invalidaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
     }
 
     

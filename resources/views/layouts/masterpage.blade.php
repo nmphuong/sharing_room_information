@@ -61,14 +61,23 @@
 									$avatar = Auth::user()->avatar;
 								}
 							?>
+							
 							<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('{{$avatar}}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 								<div class="btn-group">
 									<button type="button" class="btn dropdown-toggle" style="color: transparent;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 									<div class="dropdown-menu">
 										{{-- <a class="dropdown-item" href="{{asset('/profile')}}">{{Auth::user()->fullname}}</a> --}}
-										<a class="dropdown-item" href="{{asset('/profile')}}">Thông tin cá nhân</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="{{asset('/logout')}}">Đăng xuất</a>
+										<?php
+											if(Session::get('session_logged_in')){
+												$dom = "<a class='dropdown-item' href='profile'>Thông tin cá nhân</a>
+														<div class='dropdown-divider'></div>
+														<a class='dropdown-item' href='logout'>Đăng xuất</a>";
+											}
+											else {
+												$dom = "<a class='dropdown-item' href='login'>Đăng nhập</a>";
+											}
+										?>
+										{!! $dom !!}
 									</div>
 								</div>
 							</div>
@@ -93,10 +102,10 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-md-12 text-center justify-content-center">
-				<a class="navbar-brand" href="index.html">
-					<div class="w-25 m-auto">
+		<div class="row justify-content-center">
+			<div class="col-md-2 text-center">
+				<a class="navbar-brand" href="{{asset('/')}}">
+					<div class="w-100 m-auto">
 						<div class="col-lg-5 m-auto">
 							<img class="w-100" src="{{asset('images/logo.png')}}" alt="">
 						</div>
