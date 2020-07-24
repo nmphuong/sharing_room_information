@@ -19,7 +19,7 @@
                 <td>{{$appro->fullname}}</td>
                 <td>{{$appro->title}}</td>
                 <td>{{$appro->phone_number}}</td>
-                <td>{{$appro->price}}</td>            
+                <td>{{$appro->price}} đ</td>            
                 <td class="text-center">
                     <a type="button" href="{{asset('approval/detail'.$appro->id)}}" class="btn btn-outline-success fa fa-eye"></a>                
                </td>

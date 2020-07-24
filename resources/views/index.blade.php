@@ -155,7 +155,7 @@ a.cls:not(.collapsed):after {
                             <p style="line-height: 1em;" class="mb-0">...</p>
                             <span class="position">{{$roomnew->fullname}}</span><span> - </span>
                             <span class="position">{{$roomnew->_name}}</span><br>
-                            <a href="{{asset('/info')}}" class="btn btn-primary">Xem</a>
+                            <a href="{{asset('/info'.$roomnew->id)}}" class="btn btn-primary">Xem</a>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate m-0"><a href="#"
                                         class="d-flex align-items-center justify-content-center"><span
@@ -200,7 +200,7 @@ a.cls:not(.collapsed):after {
                             <p style="line-height: 1em;" class="mb-0">...</p>
                             <span class="position">{{$roomfavorite->fullname}}</span><span> - </span>
                             <span class="position">{{$roomfavorite->_name}}</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
+                            <a href="{{asset('/info'.$roomfavorite->id)}}" class="btn btn-primary">Xem</a>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate m-0">
                                     <a href="{{asset('/info')}}" class="d-flex align-items-center justify-content-center">
