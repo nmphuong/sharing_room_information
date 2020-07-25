@@ -87,7 +87,7 @@ class PostController extends Controller
         $post->vip = $request->a_pn_post;
         $post->favorite = 0;
         $post->type = $request->a_type_post;
-        $post->status = 1;
+        $post->status = 0;
         $post->save();
         return redirect("/");
     }
