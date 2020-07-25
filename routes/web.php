@@ -42,5 +42,14 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('get-ward','PostController@getWard');
 });
 Route::group(['prefix' => 'authenticate'], function () {
-    Route::get('/','AuthenticateController@index' );
+    Route::get('/','AuthenticateController@index');
+});
+Route::group(['prefix' => 'forgotpass'], function () {
+    Route::get('/','ForgotPasswordController@index');
+    Route::post('/','ForgotPasswordController@sendmail');
+    Route::get('/auth','ForgotPasswordController@resetpass');
+});
+Route::group(['prefix' => 'resetpassword'], function () {
+    Route::get('/','SetPasswordController@index');
+    Route::post('/','SetPasswordController@store');
 });

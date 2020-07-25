@@ -128,13 +128,23 @@
                                                 {{ session('invalidaccount') }}
                                             </div>
                                         @endif
+                                        @if ($stringSuccessChangePass != null)
+                                            <div class="alert alert-danger text-center">
+                                                {{$stringSuccessChangePass}}
+                                            </div>
+                                        @endif
                                         @if (session('dupticateaccount'))
                                             <div class="alert alert-danger text-center col-12">
                                                 {{ session('dupticateaccount') }}
                                             </div>
                                         @endif
-                                        @if (session('success_authenticate'))
+                                        @if (session('dupticateemail'))
                                             <div class="alert alert-danger text-center col-12">
+                                                {{ session('dupticateemail') }}
+                                            </div>
+                                        @endif
+                                        @if (session('success_authenticate'))
+                                            <div class="alert alert-primary text-center col-12">
                                                 {{ session('success_authenticate') }}
                                             </div>
                                         @endif
@@ -145,7 +155,7 @@
                                                 <div class="modal-body">
                                                     <p>Vui lòng xác thực email!</p>
                                                 </div>
-                                                    <button id="close_popup_success_register" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                                                    <button id="close_popup_success_register" type="button" class="btn btn-primary" style="border-radius: 0" data-dismiss="modal">OK</button>
                                                 </div>
                                             </div>  
                                         </div>
@@ -157,7 +167,7 @@
                                                 <input  required type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="" />
                                             </div>
                                             <div class="form-group col-lg-6 m-auto">
-                                                <a class="nav-link" href="#">Quên mật khẩu?</a>
+                                                <a class="nav-link" href="{{asset('/forgotpass')}}">Quên mật khẩu?</a>
                                             </div>
                                             <div class="form-group col-lg-6 m-auto">
                                                 <input type="submit" class="btnLogin"  value="Đăng nhập"/>
@@ -170,23 +180,23 @@
                         </form>
                     </div>
                     <div class="col-md-9 register-right d-none">
-                        <form action="register" role="form" method="POST">
+                        <form id="register" action="register" role="form" method="POST">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <h3 class="register-heading">Đăng ký</h3>
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" required name="fullname" class="form-control" placeholder="Tên đầy đủ" value="" />
+                                                <input type="text" required name="fullname" class="form-control" placeholder="Tên đầy đủ" value="Nguyen Minh Phuong" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" required name="username" class="form-control" placeholder="Tên đăng nhập" value="" />
+                                                <input type="text" title="Tên đăng nhập bao gồm 'A-Z a-z 0-9 _' và bắt đầu bằng ký tự chữ độ dài từ 6 - 31 ký tự" required id="username" name="username" class="form-control" placeholder="Tên đăng nhập" value="custormer" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" required name="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                                <input type="password" required name="password" class="form-control" placeholder="Mật khẩu *" value="123@Ab_A123b@!." />
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" required name="re_password" class="form-control"  placeholder="Nhập lại mật khẩu" value="" />
+                                                <input type="password" required name="re_password" class="form-control"  placeholder="Nhập lại mật khẩu" value="123@Ab_A123b@!." />
                                             </div>
                                             <div class="form-group">
                                                 <div class="maxl">
@@ -206,13 +216,13 @@
                                             <input type="date" class="form-control" name="birthday"  placeholder="Sinh nhật" value="<?php echo date('Y-m-d'); ?>" />
                                         </div>
                                             <div class="form-group">
-                                                <input type="text" required name="address" class="form-control" placeholder="Địa chỉ" value="" />
+                                                <input type="text" required name="address" class="form-control" placeholder="Địa chỉ" value="123 Huynh Thuc Khang" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" required minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Số điện thoại" value="" />
+                                                <input type="text" required minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Số điện thoại" value="0389902073" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" required name="email" class="form-control" placeholder="Email" value="" />
+                                                <input type="email" required name="email" class="form-control" placeholder="Email" value="nguyenminhphuong25111999@gmail.com" />
                                             </div>
                                             <input type="submit" class="btnRegister"  value="Đăng ký"/>
                                         </div>
@@ -244,5 +254,13 @@
         });
     });
 </script> 
+<script>
+    $(document).ready(function(){
+        $("#username:not(pattern)").attr("pattern", "^[A-Za-z]([_]?)([A-Za-z0-9][_]?){5,30}");
+        $(".btnRegister").click(function(){
+            $("#username:not(pattern)").attr("pattern", "^[A-Za-z]([_]?)([A-Za-z0-9][_]?){5,30}");
+        });
+    });
+</script>
 </body>
 </html>

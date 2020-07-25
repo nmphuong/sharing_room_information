@@ -17,12 +17,22 @@ class AuthenticateController extends Controller
     {
         $email = base64_decode($request->em);
         $user = DB::table('users')->where('email', $email)->first();
+        $expiredEmail = time() * 1000;
+        $expiredEmails['expiredEmails'] = false;
+        $notFoundPage['notFoundPage'] = false;
         if($user->status == 1){
-            return view("not_found.page_not_found");
+            $notFoundPage['notFoundPage'] = true;
+            return view("not_found.page_not_found")->with($expiredEmails)->with($notFoundPage);
         }
         else {
-            $user = DB::table('users')->where('email', $email)->update(['status' => 1]);
-            return redirect('/login')->with('success_authenticate', 'Xác thực thành công vui lòng đăng nhập!');
+            if(($user->expired_verify_email - $expiredEmail) >= 0){
+                $user = DB::table('users')->where('email', $email)->update(['status' => 1, 'expired_verify_email' => 0]);
+                return redirect('/login')->with('success_authenticate', 'Xác thực thành công vui lòng đăng nhập!');
+            }
+            else {
+                $expiredEmails['expiredEmails'] = true;
+                return view("not_found.page_not_found")->with($expiredEmails)->with($notFoundPage);
+            }
         }
     }
 

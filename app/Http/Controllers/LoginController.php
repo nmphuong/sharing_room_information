@@ -21,8 +21,15 @@ class LoginController extends Controller
     public function index()
     {
         //Session::forget('session_logged_in');
-        if(Session::get('session_logged_in') == null)
-        return view('users.loginRegister');
+        if(Session::get('session_logged_in') == null){
+            $stringSuccessChangePass['stringSuccessChangePass'] = null;
+            if(Session::has('string')){
+                $stringSuccessChangePass['stringSuccessChangePass'] = Session::get('string')[0];
+                Session::forget('string');
+                return view('users.loginRegister')->with($stringSuccessChangePass);
+            }
+            return view('users.loginRegister')->with($stringSuccessChangePass);
+        }
         else return redirect('/');
     }
 
@@ -34,27 +41,47 @@ class LoginController extends Controller
     public function create(Request $request)
     {
         //users.loginRegister
-        if(DB::table('users')->where('username', $request->username)->first() || DB::table('users')->where('email', $request->email)->first()){
-            return redirect()->back()->with('dupticateaccount', 'Tài khoản đã tồn tại!');
+        $username = trim($request->username, " ");
+        $email = $request->email;
+        $time = (time() + 30) * 1000;
+        $isUserStatusActive = DB::select("select * from users where (username='". $username."' or email='" . $email . "') and status = 1");
+        if(count($isUserStatusActive) >= 1){
+            if(count(DB::select("select * from users where username='". $username."' and status = 1")) >=  1){
+                return redirect()->back()->with('dupticateaccount', 'Tài khoản đã tồn tại!');
+            }
+            if(count(DB::select("select * from users where email='" . $email . "' and status = 1")) >= 1){
+                return redirect()->back()->with('dupticateemail', 'Email đã tồn tại!');
+            }
         }
-        $user = new User;
-        //dd($user);
-        $user->username = $request->username;
-        $user->password = Hash::make($request->password);
-        $user->fullname = $request->fullname;
-        $user->birthday = $request->birthday;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->email = $request->email;
-        $user->vip = 0;
-        $user->status = 0;
-        $user->role = 3;
-        $user->confirmation = 0;
-        $user->save();
+        $isUserStatusNonActive = DB::select("select * from users where (username='". $username."' or email='" . $email . "') and status = 0");
+        if(count($isUserStatusNonActive) == 0 && count($isUserStatusActive) == 0){
+            $user = new User;
+            //dd($user);
+            $user->username = $username;
+            $user->password = Hash::make($request->password);
+            $user->fullname = $request->fullname;
+            $user->birthday = $request->birthday;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->email = $request->email;
+            $user->vip = 0;
+            $user->status = 0;
+            $user->expired_verify_email = $time;
+            $user->role = 3;
+            $user->confirmation = 0;
+            $user->save();
+        }
+        if(count($isUserStatusNonActive) == 1){
+            $isUserEmail = DB::select("select * from users where (email='" . $email . "') and status = 0");
+            if(count($isUserEmail) == 0){
+                DB::update("update users set email = '" . $email ."' where username = '" . $username . "'");
+            }
+            DB::update("update users set expired_verify_email = " . $time ." where email = '" . $email . "'");
+        }
         //return Redirect::to('layouts.home',compact('message'));
         $input = $request->email;
         $data = array('emailto'=>$input);
-        Mail::send(['html'=>'users.templateEmail'],$data, function($message) use ($data){
+        Mail::send(['html'=>'templateEmail.templateEmail'],$data, function($message) use ($data){
             foreach($data as $d)
             $message->to($d, '')->subject('Xác thực email');
             

@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>404 HTML Template by Colorlib</title>
+	<title>Not Found</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
@@ -137,7 +137,7 @@ font-size: 14px;
 </head>
 
 <body>
-
+	@if ($notFoundPage == true)
 	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
@@ -147,6 +147,29 @@ font-size: 14px;
 			<a href="{{asset('/login')}}">Go TO LOGIN</a>
 		</div>
 	</div>
+	@endif
+	@if ($expiredEmails == true)
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>Oops!</h1>
+				<h2>Time expired email!</h2>
+			</div>
+			<a href="{{asset('/login')}}">Go TO LOGIN</a>
+		</div>
+	</div>
+	@endif
+	@if ($expiredForgotword == true)
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>Oops!</h1>
+				<h2>Time expired email!</h2>
+			</div>
+			<a href="{{asset('/login')}}">Go TO LOGIN</a>
+		</div>
+	</div>
+	@endif
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
