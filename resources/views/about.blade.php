@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center">
         <div class="col-md-9 ftco-animate mb-0 text-center">
-            <p class="breadcrumbs mb-0"><span class="mr-2"><a href="{{asset('/')}}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Giới thiệu <i class="fa fa-chevron-right"></i></span></p>
+            <p class="breadcrumbs mb-0"><span class="mr-2"><a href="{{asset('/')}}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Giới thiệu</span></p>
           <h1 class="mb-0 bread">Giới Thiệu</h1>
         </div>
       </div>
@@ -19,7 +19,7 @@
               <div class="row justify-content-center">
                   <div class="col-md-10">
             <div class="heading-section text-center ftco-animate pb-4">
-                <span class="subheading">Chào mừng bạn đến với Sharing Room Information</span>
+                <span class="subheading">Chào mừng bạn đến với website nhà việt</span>
               <h2>Welcome</h2>
             </div>
             <p>Trang web của chúng tôi được thành lập dựa trên nhu cầu về chỗ ở dành cho những bạn sinh viên hay tất cả mọi người cần tìm chỗ ở mới hoặc tìm nhà, căn hộ nhưng lại không có thời gian để đi tìm và cho các bạn sinh viên đến nơi lạ để học. Và dành cho những người cần cho thuê hoặc bán chỗ ở một cách nhanh nhất.</p>
@@ -44,107 +44,40 @@
 
       
 <section class="ftco-section testimony-section ftco-no-pb">
-  <div class="img img-bg border" style="background-image: url(images/bg_4.jpg);"></div>
-  <div class="overlay"></div>
-  <div class="container">
-      <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-              <!-- <span class="subheading">Testimonial</span> -->
-              <h2 class="mb-3">Ý KIẾN NGƯỜI DÙNG</h2>
-          </div>
-      </div>
-      <div class="row ftco-animate">
-          <div class="col-md-12">
-              <div class="carousel-testimony owl-carousel ftco-owl">
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                          <div class="icon d-flex align-items-center justify-content-center"><span
-                                  class="fa fa-quote-left"></div>
-                          <div class="text">
-                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
-                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
-                              <div class="d-flex align-items-center">
-                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
-                                  <div class="pl-3">
-                                      <p class="name">Ninh Vo 1</p>
-                                      <span class="position">User</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                          <div class="icon d-flex align-items-center justify-content-center"><span
-                                  class="fa fa-quote-left"></div>
-                          <div class="text">
-                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
-                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
-                              <div class="d-flex align-items-center">
-                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
-                                  <div class="pl-3">
-                                      <p class="name">Ninh Vo 2</p>
-                                      <span class="position">User</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                          <div class="icon d-flex align-items-center justify-content-center"><span
-                                  class="fa fa-quote-left"></div>
-                          <div class="text">
-                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
-                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
-                              <div class="d-flex align-items-center">
-                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
-                                  <div class="pl-3">
-                                      <p class="name">Ninh Vo 3</p>
-                                      <span class="position">User</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                          <div class="icon d-flex align-items-center justify-content-center"><span
-                                  class="fa fa-quote-left"></div>
-                          <div class="text">
-                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
-                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
-                              <div class="d-flex align-items-center">
-                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
-                                  <div class="pl-3">
-                                      <p class="name">Ninh Vo 4</p>
-                                      <span class="position">User</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                          <div class="icon d-flex align-items-center justify-content-center"><span
-                                  class="fa fa-quote-left"></div>
-                          <div class="text">
-                              <p class="mb-4">Website rat huu ich, giup chung toi co the tim kiem nha tro nhanh
-                                  chong, khi chung toi muon di chuyen den noi o moi.</p>
-                              <div class="d-flex align-items-center">
-                                  <div class="user-img" style="background-image: url(images/user_ninh.jpg)"></div>
-                                  <div class="pl-3">
-                                      <p class="name">Ninh Vo 5</p>
-                                      <span class="position">User</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="img img-bg border" style="background-image: url(images/bg_4.jpg);"></div>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+                <!-- <span class="subheading">Testimonial</span> -->
+                <h2 class="mb-3">Ý KIẾN NGƯỜI DÙNG</h2>
+            </div>
+        </div>
+        <div class="row ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+                    @foreach ( $review as $rev )
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="icon d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-quote-left"></div>
+                                <div class="text">
+                                    <p class="mb-4" style="height: 153px; overflow: hidden;">{{$rev->content}}</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url({{$rev->avatar}}); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+                                        <div class="pl-3">
+                                            <p class="name">{{$rev->fullname}}</p>
+                                            <span class="position">User</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 @stop

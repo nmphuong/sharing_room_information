@@ -306,11 +306,11 @@ h1, h2, h3, h4, h5,
 		background-position: top center !important;
 	}
 	&.hero-wrap-2{
-		height: 300px !important;
+		height: 200px !important;
 		position: relative;
 		.overlay{
 			width: 100%;
-			height: 300px;
+			height: 200px;
 
 			position: absolute;
 			top: 0;
@@ -321,7 +321,7 @@ h1, h2, h3, h4, h5,
 			opacity: 1;
 		}
 		.slider-text{
-			height: 300px !important;
+			height: 200px !important;
 		}
 	}
 }

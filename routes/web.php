@@ -48,6 +48,14 @@ Route::group(['prefix' => 'apartment'], function () {
 Route::group(['prefix' => 'house'], function () {
     Route::get('/','HouseController@index' );
 });
+//=============House=============
+Route::group(['prefix' => 'other'], function () {
+    Route::get('/','OtherController@index' );
+});
+//=============About=============
+Route::group(['prefix' => 'about'], function () {
+    Route::get('/','AboutController@index' );
+});
 //=============Profile=============
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );

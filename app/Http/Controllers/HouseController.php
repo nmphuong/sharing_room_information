@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Session;
+use App\Province;
+use App\District;
+use App\Ward;
+use Auth;
+use View;
+use Post;
+use DB;
 
 class HouseController extends Controller
 {
@@ -11,9 +20,56 @@ class HouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        dump($request->page);
+        $offset = 0;
+        if($request->page != null){
+            $offset = (int)(($request->page - 1) * 12);
+        }
+        dump($offset);
+
+
+        $acreage = '';
+        $price = '';
+        $provinceSearch = '';
+        $districtSearch = '';
+        $wardSearch = '';
+
+        if($request->acreage != -1 && $request->acreage != null){
+            if(strpos($request->acreage, 'and') != false){
+                $acreage = 'and acreage between ' . $request->acreage;
+            }
+            else {
+                $acreage = 'and	acreage ' . $request->acreage;
+            }
+        }
+        if($request->price != -1 && $request->acreage != null){
+            if(strpos($request->price, 'and') != false){
+                $price = 'and price between ' . $request->price;
+            }
+            else {
+                $price = 'and price ' . $request->price;
+            }
+        }
+        if($request->province != -1 && $request->province != null){
+            $provinceSearch = 'and city = ' .$request->province;
+        }
+        if($request->district != -1 && $request->district != null){
+            $districtSearch = 'and district = ' .$request->district;
+        }
+        if($request->ward != -1 && $request->ward != null){
+            $wardSearch = 'and ward = ' .$request->ward;
+        }
+
+
+        $province['province'] = Province::all();
+        $district['district'] = [];
+        $ward['ward'] =  [];
+        $postCount['postCount'] = ceil(count(DB::select('select * from phong_tro where type = 3')) / 12);
+        $posts['posts'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 3 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
+        dump("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 3 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
+        return view('house')->with($province)->with($district)->with($ward)->with($posts)->with($postCount);
     }
 
     /**

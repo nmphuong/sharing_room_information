@@ -1,6 +1,17 @@
 @extends('layouts.masterpage')
 
 @section('content')
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg'); height: 200px!important;" data-stellar-background-ratio="0.5">
+<div class="overlay" style="height: 200px!important;"></div>
+<div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" style=" height: 200px!important;">
+    <div class="col-md-9 ftco-animate mb-0 text-center">
+        <p class="breadcrumbs mb-0"><span class="mr-2"><a href="{{asset('/')}}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Căn hộ</span></p>
+        <h1 class="mb-0 bread">Căn hộ</h1>
+    </div>
+    </div>
+</div>
+</section>
 @include('menus.criterion')
 <section class="ftco-section pt-2">
 	<div class="container-fluid">

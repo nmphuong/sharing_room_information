@@ -135,7 +135,7 @@
 					<li class="nav-item"><a href="{{asset('/motel-room')}}" class="nav-link">Phòng trọ</a></li>
 					<li class="nav-item"><a href="{{asset('/apartment')}}" class="nav-link">Căn hộ</a></li>
 					<li class="nav-item"><a href="{{asset('/house')}}" class="nav-link">Nhà nguyên căn</a></li>
-					<li class="nav-item"><a href="{{asset('/graft')}}" class="nav-link">Ở ghép</a></li>
+					<li class="nav-item"><a href="{{asset('/other')}}" class="nav-link">Khác</a></li>
 					<li class="nav-item"><a href="{{asset('/about')}}" class="nav-link">Giới thiệu</a></li>
 					<li class="nav-item"><a href="{{asset('/contact')}}" class="nav-link">Liên hệ</a></li>
 					<li class="nav-item"><a href="{{asset('/forum')}}" class="nav-link">Forum</a></li>
