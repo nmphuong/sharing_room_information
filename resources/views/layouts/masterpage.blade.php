@@ -44,7 +44,7 @@
 					<div class="col-md-8 d-md-flex mb-md-0 mb-3">
 						<form action="result" method="GET" role="form" class="searchform order-lg-last w-100">
 							<div class="form-group d-flex">
-								<input type="text" name="search_query" class="form-control pl-3" value="{{$searchbind}}" placeholder="Tìm kiếm...">
+								<input type="text" name="search_query" class="form-control pl-3" value="" placeholder="Tìm kiếm...">
 								<button type="submit" placeholder="" class="form-control search"><span
 										class="fa fa-search"></span></button>
 							</div>

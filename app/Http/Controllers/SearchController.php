@@ -24,6 +24,9 @@ class SearchController extends Controller
         if($request->search_query != null){
             Session::put("search_query", $request->search_query);
         }
+        if($request->search_query == null){
+            Session::forget("search_query", "");
+        }
 
         $searchQuery = Session::get("search_query");
         $searchbind['searchbind'] = $searchQuery;
@@ -33,9 +36,6 @@ class SearchController extends Controller
         $district['district'] = [];
         $ward['ward'] =  [];
         $keysearch = $request->search_query;
-        
-
-
 
 
         $acreage = '';
