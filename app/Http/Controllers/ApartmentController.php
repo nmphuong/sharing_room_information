@@ -10,9 +10,10 @@ use App\District;
 use App\Ward;
 use Auth;
 use View;
+use Post;
 use DB;
 
-class SearchController extends Controller
+class ApartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,21 +22,12 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->search_query != null){
-            Session::put("search_query", $request->search_query);
+        dump($request->page);
+        $offset = 0;
+        if($request->page != null){
+            $offset = (int)(($request->page - 1) * 12);
         }
-        if($request->search_query == null){
-            Session::forget("search_query", "");
-        }
-
-        $searchQuery = Session::get("search_query");
-        $searchbind['searchbind'] = $searchQuery;
-
-
-        $province['province'] = Province::all();
-        $district['district'] = [];
-        $ward['ward'] =  [];
-        $keysearch = $request->search_query;
+        dump($offset);
 
 
         $acreage = '';
@@ -43,9 +35,6 @@ class SearchController extends Controller
         $provinceSearch = '';
         $districtSearch = '';
         $wardSearch = '';
-        $p = '';
-        $d = '';
-        $w = '';
 
         if($request->acreage != -1 && $request->acreage != null){
             if(strpos($request->acreage, 'and') != false){
@@ -65,35 +54,22 @@ class SearchController extends Controller
         }
         if($request->province != -1 && $request->province != null){
             $provinceSearch = 'and city = ' .$request->province;
-            $pro = DB::select("select _name from province where id = ". $request->province);
-            $p = "tại " . $pro[0]->_name;
         }
         if($request->district != -1 && $request->district != null){
             $districtSearch = 'and district = ' .$request->district;
-            $dis = DB::select("select _name from district where id = ". $request->district);
-            $d = ", " . $dis[0]->_name;
         }
         if($request->ward != -1 && $request->ward != null){
             $wardSearch = 'and ward = ' .$request->ward;
-            $war = DB::select("select _name from ward where id = ". $request->ward);
-            $w = ", " . $war[0]->_name;
         }
-        
-        $key['key'] = $searchQuery . " " . $p . " " . $d . " " . $w;
 
 
-        $select = "select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district and title like N'%" .$searchQuery. "%' " .$acreage. " " .$price. " " .$provinceSearch. " " . $districtSearch . " " . $wardSearch . " order by day_post desc limit 50;";
-
-        $result['result'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district and title like N'%" .$searchQuery. "%' " .$acreage. " " .$price. " " .$provinceSearch. " " . $districtSearch . " " . $wardSearch . " order by day_post desc limit 50;");
-
-
-        dump($select);
-        
-
-
-        $countResult['countResult'] = count($result['result']);
-        return view('search.resultSearchForm')->with($province)->with($district)->with($ward)->with($result)->with($countResult)->with($key)->with($searchbind);
-        //}
+        $province['province'] = Province::all();
+        $district['district'] = [];
+        $ward['ward'] =  [];
+        $postCount['postCount'] = ceil(count(DB::select('select * from phong_tro where type = 2')) / 12);
+        $posts['posts'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 2 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
+        dump("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 2 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
+        return view('apartment')->with($province)->with($district)->with($ward)->with($posts)->with($postCount);
     }
 
     /**
