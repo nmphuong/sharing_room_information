@@ -42,7 +42,7 @@ class LoginController extends Controller
     {
         //users.loginRegister
         $username = trim($request->username, " ");
-        $email = $request->email;
+        $email = strtolower($request->email);
         $time = (time() + 30) * 1000;
         $isUserStatusActive = DB::select("select * from users where (username='". $username."' or email='" . $email . "') and status = 1");
         if(count($isUserStatusActive) >= 1){

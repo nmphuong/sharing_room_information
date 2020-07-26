@@ -26,6 +26,12 @@
 
 	<link rel="stylesheet" type="text/css" href="{{asset('css/flaticon.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+	<style>
+		#btnFilter:hover{
+			background-color: #ffc107!important;
+			color: #fff!important;
+		}
+	</style>
 	@yield('style')
 </head>
 
@@ -38,7 +44,7 @@
 					<div class="col-md-8 d-md-flex mb-md-0 mb-3">
 						<form action="result" method="GET" role="form" class="searchform order-lg-last w-100">
 							<div class="form-group d-flex">
-								<input type="text" name="search_query" class="form-control pl-3" placeholder="Tìm kiếm...">
+								<input type="text" name="search_query" class="form-control pl-3" value="{{$searchbind}}" placeholder="Tìm kiếm...">
 								<button type="submit" placeholder="" class="form-control search"><span
 										class="fa fa-search"></span></button>
 							</div>
@@ -107,8 +113,8 @@
 			<div class="col-md-2 text-center">
 				<a class="navbar-brand" href="{{asset('/')}}">
 					<div class="w-100 m-auto">
-						<div class="col-lg-5 m-auto">
-							<img class="w-100" src="{{asset('images/logo.png')}}" alt="">
+						<div class="col-8 m-auto">
+							<img class="w-50" src="{{asset('images/logo.png')}}" alt="">
 						</div>
 					</div>
 					Nhà <span>Việt</span>
