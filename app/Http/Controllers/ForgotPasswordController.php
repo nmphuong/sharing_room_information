@@ -24,12 +24,12 @@ class ForgotPasswordController extends Controller
     public function sendmail(Request $request)
     {
         $username = trim($request->username, " ");
-        $email = $request->email;
+        $email = strtolower($request->email);
         $time = (time() + 1800) * 1000;
         $isUserStatusActive = DB::select("select * from users where (username='". $username."' and email='" . $email . "') and status = 1");
         if(count($isUserStatusActive) == 1){
             $user = DB::table('users')->where('email', $email)->update(['expired_verify_forgotpass' => $time]);
-            $input = $request->email;
+            $input = strtolower($request->email);
             $data = array('emailto'=>$input);
             Mail::send(['html'=>'templateEmail.templateEmailForgotPassword'],$data, function($message) use ($data){
                 foreach($data as $d)

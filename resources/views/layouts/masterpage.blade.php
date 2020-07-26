@@ -138,7 +138,7 @@
 					<li class="nav-item"><a href="{{asset('/other')}}" class="nav-link">Khác</a></li>
 					<li class="nav-item"><a href="{{asset('/about')}}" class="nav-link">Giới thiệu</a></li>
 					<li class="nav-item"><a href="{{asset('/contact')}}" class="nav-link">Liên hệ</a></li>
-					<li class="nav-item"><a href="{{asset('/forum')}}" class="nav-link">Forum</a></li>
+					{{-- <li class="nav-item"><a href="{{asset('/forum')}}" class="nav-link">Forum</a></li> --}}
 				</ul>
 			</div>
 		</div>

@@ -56,6 +56,11 @@ Route::group(['prefix' => 'other'], function () {
 Route::group(['prefix' => 'about'], function () {
     Route::get('/','AboutController@index' );
 });
+//=============Contact=============
+Route::group(['prefix' => 'contact'], function () {
+    Route::get('/','ContactController@index' );
+    Route::get('/sendcontact','ContactController@store' );
+});
 //=============Profile=============
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );

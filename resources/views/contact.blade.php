@@ -9,8 +9,7 @@
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate mb-0 text-center">
 					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="{{asset('/')}}">Trang chủ <i
-									class="fa fa-chevron-right"></i></a></span> <span>Liên hệ <i
-								class="fa fa-chevron-right"></i></span></p>
+									class="fa fa-chevron-right"></i></a></span> <span>Liên hệ</span></p>
 					<h1 class="mb-0 bread">Liên Hệ</h1>
 				</div>
 			</div>
@@ -69,34 +68,39 @@
 							<div class="col-md-7">
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3 class="mb-4">Liên hệ với chúng tôi</h3>
-									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+									<form method="GET" action="{{asset('contact/sendcontact')}}" id="contactForm" name="contactForm" class="contactForm">
 										<div class="row">
+											@if (session('success'))
+												<div class="alert alert-primary text-center col-12">
+													{{ session('success') }}
+												</div>
+											@endif
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="name">Họ và tên</label>
-													<input type="text" class="form-control" name="name" id="name"
-														placeholder="Họ và tên">
+													<input type="text" class="form-control" name="fullname" id="name"
+														placeholder="Họ và tên" required value="Nguyễn Minh Phương">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="email">Địa chỉ email</label>
 													<input type="email" class="form-control" name="email" id="email"
-														placeholder="Email">
+														placeholder="Email" required value="nguyenminhphuong25111999@gmail.com">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<label class="label" for="subject">Tiêu đề</label>
 													<input type="text" class="form-control" name="subject" id="subject"
-														placeholder="Tiêu đề">
+														placeholder="Tiêu đề" required value="Title contact test">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<label class="label" for="#">Nội dung</label>
 													<textarea name="message" class="form-control" id="message" cols="30"
-														rows="4" placeholder="Nội dung"></textarea>
+														rows="10" placeholder="Nội dung" required minlength="20" value="">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum cumque eaque maiores necessitatibus, praesentium accusantium provident iusto, harum aut, repellendus libero inventore error consequatur natus omnis quaerat. Assumenda, sequi. Reiciendis!Consequatur repellat repellendus quae, eius eum voluptate esse, alias, quas accusantium explicabo mollitia! Veniam doloremque saepe libero, velit blanditiis temporibus. Laboriosam libero quam nisi labore ipsum fugiat sequi rerum mollitia.</textarea>
 												</div>
 											</div>
 											<div class="col-md-12">
