@@ -87,7 +87,7 @@ class SearchController extends Controller
         $result['result'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district and title like N'%" .$searchQuery. "%' " .$acreage. " " .$price. " " .$provinceSearch. " " . $districtSearch . " " . $wardSearch . " order by day_post desc limit 12;");
 
 
-        
+        dump($select);
         
 
 

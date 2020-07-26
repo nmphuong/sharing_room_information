@@ -130,7 +130,7 @@
 				<span class="fa fa-bars"></span> Menu
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav m-auto">
+				<ul class="navbar-nav nav m-auto">
 					<li class="nav-item active"><a href="{{asset('/')}}" class="nav-link">Trang chủ</a></li>
 					<li class="nav-item"><a href="{{asset('/motel-room')}}" class="nav-link">Phòng trọ</a></li>
 					<li class="nav-item"><a href="{{asset('/apartment')}}" class="nav-link">Căn hộ</a></li>
@@ -179,6 +179,18 @@
 	{{-- <script src="{{asset('js/google-map.js')}}" defer></script> --}}
 	{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js') }}" defer></script> --}}
 	<script src="{{asset('js/main.js')}}" defer></script>
+	<script>
+		$(document).ready(function () {
+			$('.nav li a').click(function(e) {
+
+				$('.nav li.active').removeClass('active');
+
+				var $parent = $(this).parent();
+				$parent.addClass('active');
+				e.preventDefault();
+			});
+		});
+	</script>
 	@yield('script')
 </body>
 

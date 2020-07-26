@@ -31,6 +31,12 @@ Route::group(['prefix' => '/'], function () {
     Route::get('get-ward','HomeController@getWard');
     Route::get('get-room','HomeController@getRoom');
 });
+Route::group(['prefix' => 'motel-room'], function () {
+    Route::get('/','MotelRoomController@index' );
+    Route::get('get-district','HomeController@getDistrict' );
+    Route::get('get-ward','HomeController@getWard');
+    Route::get('get-room','HomeController@getRoom');
+});
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );
     Route::post('/','ProfileController@store' );
