@@ -161,10 +161,10 @@
                                         </div>
                                         @endif
                                             <div class="form-group col-lg-6 m-auto pb-3">
-                                            <input type="text" required name="username" class="form-control" placeholder="Tên đăng nhập" value="{{old('username')}}" />
+                                            <input type="text" required name="username" class="form-control" placeholder="Tên đăng nhập" value="webmaster" />
                                             </div>
                                             <div class="form-group col-lg-6 m-auto">
-                                                <input  required type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                                <input  required type="password" name="password" class="form-control" placeholder="Mật khẩu *" value="123@Ab_A123b@!." />
                                             </div>
                                             <div class="form-group col-lg-6 m-auto">
                                                 <a class="nav-link" href="{{asset('/forgotpass')}}">Quên mật khẩu?</a>

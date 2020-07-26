@@ -53,3 +53,9 @@ Route::group(['prefix' => 'resetpassword'], function () {
     Route::get('/','SetPasswordController@index');
     Route::post('/','SetPasswordController@store');
 });
+Route::group(['prefix' => 'result'], function () {
+    Route::get('/','SearchController@index');
+    Route::get('get-district','HomeController@getDistrict' );
+    Route::get('get-ward','HomeController@getWard');
+    Route::get('get-room','HomeController@getRoom');
+});

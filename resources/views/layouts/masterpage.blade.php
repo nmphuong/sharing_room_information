@@ -36,14 +36,15 @@
 			<div class="col-md-9 order-md-last">
 				<div class="row">
 					<div class="col-md-8 d-md-flex mb-md-0 mb-3">
-						<form action="#" class="searchform order-lg-last w-100">
+						<form action="result" method="GET" role="form" class="searchform order-lg-last w-100">
 							<div class="form-group d-flex">
-								<input type="text" class="form-control pl-3" placeholder="Tìm kiếm...">
+								<input type="text" name="search_query" class="form-control pl-3" placeholder="Tìm kiếm...">
 								<button type="submit" placeholder="" class="form-control search"><span
 										class="fa fa-search"></span></button>
 							</div>
 						</form>
 					</div>
+
 					
 					<div class="col-lg-2 pb-2">
 						<a class="navbar-link btn btn-warning w-100" style="line-height: 2.3em;" href="{{asset('/post/create-post')}}">
