@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Session;
-use Hash;
 use DB;
+use Mail;
+use App\Contact;
 
-class ProfileController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        if(Session::get('session_logged_in') == null)
-            return redirect('/logout');
-        else {
-            return view("users.user");
-        }
+        //
+        return view('contact');
     }
 
     /**
@@ -42,8 +38,25 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        // dump("insert into contact(fullname, email, title, content) VALUES ('" . $request->fullname . "', '" . $request->email . "', '" . $request->subject . "', '" . $request->message . "')");
+        // $addContact = DB::insert("insert into contact(fullname, email, title, content) values (" . $request->fullname . ", " . $request->email . ", " . $request->subject . ", " . $request->message . ")");
+        $contact = new Contact; 
+        $contact->fullname = $request->fullname;
+        $contact->email = $request->email;
+        $contact->title = $request->subject;
+        $contact->content = $request->message;
+        $contact->save();
+
+        $input = strtolower($request->email);
+        $data = array('emailto'=>$input);
+        Mail::send(['html'=>'templateEmail.templateEmailThanksContact'],$data, function($message) use ($data){
+            foreach($data as $d)
+            $message->to($d, '')->subject('Cám ơn bạn đã gửi phản hồi');
+            
+            $message->from('noreply.sharingroom@gmail.com', "noreply.sharingroom@gmail.com");
+        });
+        return redirect()->back()->with('success', 'Gửi phản hồi thành công!');;
         //
-        dump($request);
     }
 
     /**

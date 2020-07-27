@@ -103,13 +103,16 @@ class LoginController extends Controller
         //dd(DB::table('users')->where('username', 'webmaster')->first());
         $users = $request->only('username', 'password');
         $user = DB::table('users')->where('username', $request->username)->first();
-        if($user->status == 1){
-            if(Auth::attempt($users)){
-                Session::put('session_logged_in', DB::table('users')->where('username', $request->username)->first());
-                return redirect('/');
-            } else {
-                return redirect()->back()->with('invalidaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
+        if($user){
+            if($user->status == 1){
+                if(Auth::attempt($users)){
+                    Session::put('session_logged_in', DB::table('users')->where('username', $request->username)->first());
+                    return redirect('/');
+                } else {
+                    return redirect()->back()->with('invalidaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
+                }
             }
+            return redirect()->back()->with('invalidaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
         }
         return redirect()->back()->with('invalidaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
     }

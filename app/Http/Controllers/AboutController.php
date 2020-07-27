@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Session;
-use Hash;
 use DB;
 
-class ProfileController extends Controller
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +14,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        if(Session::get('session_logged_in') == null)
-            return redirect('/logout');
-        else {
-            return view("users.user");
-        }
+        //
+        $review['review'] = DB::select('select review.*, users.fullname, users.avatar from review, users where users.id = user ');
+        return view('about')->with($review);
     }
 
     /**
@@ -43,7 +38,6 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
-        dump($request);
     }
 
     /**

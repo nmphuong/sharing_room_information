@@ -61,11 +61,11 @@
 						<div class="row d-flex">
 							{{-- <a href="{{asset('/user')}}" class="col-5 mb-3 justify-content-center"> --}}
 							<?php 
-								if(Auth::user() == null || Auth::user()->avatar == null){
+								if(Session::get('session_logged_in') == null || Session::get('session_logged_in')->avatar == null){
 									$avatar = "https://www.thehumanenterprise.com.au/wp-content/uploads/2017/06/Empty-Profile-Testimonials-300x300.jpg";
 								}
 								else {
-									$avatar = Auth::user()->avatar;
+									$avatar = Session::get('session_logged_in')->avatar;
 								}
 							?>
 							

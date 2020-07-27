@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use DB;
 use Session;
 use Hash;
-use DB;
 
-class ProfileController extends Controller
+class ChangePasswordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        if(Session::get('session_logged_in') == null)
-            return redirect('/logout');
-        else {
-            return view("users.user");
-        }
+        //
+        return view('users.changepass');
     }
 
     /**
@@ -42,8 +38,20 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        dump($request);
+        $user = DB::select("select username, password from users where username = '" . $request->username . "'");
+        if(count($user) == 1){
+            if($request->new_pwd === $request->cf_new_pwd){ //compare new_pass & cf_new_pass
+                if(Hash::check($request->pwd, $user[0]->password) == true) { //compare pass and hashedpass
+                    $pwd = Hash::make($request->new_pwd);
+                    $user = DB::table('users')->where('username', $user[0]->username)->update(['password'=>$pwd]);
+                    Session::forget('session_logged_in');
+                    return redirect()->back()->with('success', 'Đổi mật khẩu thành công vui lòng đăng nhập lại!');
+                }
+                return redirect()->back()->with('not_right_pass', 'Mật khẩu không chính xác!');
+            }
+            return redirect()->back()->with('new_pass_not_same', 'Xác nhận mật khẩu mới không trùng khớp!');
+        }
+        return redirect()->back()->with('noaccount', 'Tài khoản hoặc mật khẩu không chính xác!');
     }
 
     /**

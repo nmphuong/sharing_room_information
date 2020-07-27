@@ -56,18 +56,28 @@
         </div>
         <div class="col-lg-12 text-center mt-2">
             <input id="edit-fn" style="font-size: 2em" class="text-center text-primary" style="font-family: 'Lobster', cursive!important; outline: none; border: 0;" disabled value="{{Auth::user()->fullname}}">
-            <span class="fa fa-pencil display-4" id="e-fn-pen"></span>
         </div>
         <div class="col-lg-12 mt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 pt-2 pb-2">
+                    <div class="col-lg-6 pt-2 pb-2">
                         <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{{Auth::user()->username}}">
                     </div>
-                    <div class="col-lg-4 pt-2 pb-2">
+                    <div class="col-lg-6 pt-2 pb-2">
                         <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{{Auth::user()->phone}}">
                     </div>
-                    <div class="col-lg-4 pt-2 pb-2">
+                    <div class="col-lg-6 pt-2 pb-2">
+                    <?php
+											if(Auth::user()->email == ""){
+												$dom = "Chưa có thông tin email";
+											}
+											else {
+												$dom = Auth::user()->email;
+											}
+										?>
+                        <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{!! $dom !!}">
+                    </div>
+                    <div class="col-lg-6 pt-2 pb-2">
                         <input id="input-disabled" type="text" class="form-control border-0 text-center" disabled value="{{Auth::user()->birthday}}">
                     </div>
                     <div class="col-lg-12 pt-2 pb-2">
@@ -85,7 +95,7 @@
         <div class="update-profile">
             <button id="update-profile" class="btn btn-info border-0 m-2" data-toggle="modal" data-target="#update-profile-modal">Cập nhật thông tin</button>
         <div class="modal fade" id="update-profile-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog"  role="document">
+            <div class="modal-dialog modal-lg"  role="document">
               <div class="modal-content row">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Cập nhật thông tin</h5>
@@ -94,19 +104,58 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form class="needs-validation row" novalidate>
-                    <div class="form-group col-lg-12">
-                      <label for="exampleInputEmail1">Username</label>
+                  <form class="needs-validation row" method="POST">
+
+
+
+                    <?php 
+                      if(Auth::user() == null || Auth::user()->avatar == null){
+                        $avatar = "https://www.thehumanenterprise.com.au/wp-content/uploads/2017/06/Empty-Profile-Testimonials-300x300.jpg";
+                      }
+                      else {
+                        $avatar = Auth::user()->avatar;
+                      }
+                    ?>
+                    <div class="col-lg-12">
+                      <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 50px; height: 50px;">
+                        <div class="w-100 h-100" id="chg-avt" style="background-color: rgba(24, 24, 24, 0.726); border-radius: 50%;">
+                          <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="" name="image">
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="form-group col-lg-4">
+                      <label for="exampleInputEmail1">Tên đăng nhập</label>
                       <input type="text" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Username" value="{{Auth::user()->username}}" required disabled>
                     </div>
-                    <div class="form-group col-lg-12">
+                    <div class="form-group col-lg-4">
+                        <label for="exampleInputEmail1">Ngày sinh</label>
+                        <input type="date" class="form-control" aria-describedby="emailHelp" placeholder="birthday" value="{{Auth::user()->birthday}}" required>
+                    </div>
+                    <div class="form-group col-lg-4">
                       <label for="exampleInputPassword1">Số điện thoại</label>
                       <input type="text" class="form-control" id="exampleInputPassword1" placeholder="So Dien Thoai" value="{{Auth::user()->phone}}" required>
                     </div>
-                    <div class="form-group col-lg-12">
-                        <label for="exampleInputEmail1">Ngày sinh</label>
-                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="birthday" value="{{Auth::user()->birthday}}" required>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputEmail1">Tên đầy đủ</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username" value="{{Auth::user()->fullname}}" required>
                     </div>
+                    <?php
+											if(Auth::user()->email == ""){
+												$dom = "Chưa có thông tin email";
+											}
+											else {
+												$dom = Auth::user()->email;
+											}
+										?>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputPassword1">Email</label>
+                      <input type="email" class="form-control" id="exampleInputPassword1" placeholder="{{$dom}}" value="" required>
+                    </div>
+
                     <div class="form-group col-lg-12">
                         <label for="exampleInputPassword1">Địa chỉ</label>
                         <input type="text" class="form-control" id="exampleInputPassword1" placeholder="city" value="{{Auth::user()->address}}" required>
@@ -124,41 +173,7 @@
           </div>
         </div>
         <div class="update-password">
-          <button id="update-password" class="btn btn-danger border-0 m-2" data-toggle="modal" data-target="#update-password-modal">Cập nhật mật khẩu</button>
-        <div class="modal fade" id="update-password-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog"  role="document">
-            <div class="modal-content row">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cập nhật mật khẩu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form class="needs-validation row" novalidate>
-                  <div class="form-group col-lg-12">
-                    <label for="exampleInputEmail1">Mật khẩu cũ</label>
-                    <input type="password" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Mật khẩu cũ" value="" required>
-                  </div>
-                  <div class="form-group col-lg-12">
-                    <label for="exampleInputEmail1">Mật khẩu mới</label>
-                    <input type="password" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Mật khẩu mới" value="" required>
-                  </div>
-                  <div class="form-group col-lg-12">
-                    <label for="exampleInputEmail1">Nhập lại mật khẩu mới</label>
-                    <input type="password" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Nhập lại mật khẩu mới" value="" required>
-                  </div>
-                  <div class="col-lg-12">
-                      <button type="submit" class="btn btn-info">Cập nhật</button>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-              </div>
-            </div>
-          </div>
-        </div>
+          <a href="{{asset('/changepwd')}}"><input class="btn btn-danger border-0 m-2" type="submit" id="cho-log" name="" value="Đổi mật khẩu"/></a>
     </div>
 </div>
 </section>
