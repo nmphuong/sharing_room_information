@@ -18,7 +18,7 @@ a.cls:not(.collapsed):after {
     <div class="container-fluid px-md-4">
         <div class="row pb-2 mb-0">
             <div class="col-md-7 heading-section text-left ftco-animate">
-                <p style="font-family: 'Lobster', cursive!important;" class="h4 f-arial">{{$countResult}} kết quả tìm kiếm cho kết quả: {{$key}}</p>
+                <p style="font-family: 'Lobster', cursive!important;" class="h4 f-arial">{{$countResult}} kết quả tìm kiếm: {{$key}}</p>
             </div>
         </div>
         <div class="row" id="new_special" name="new_special">
