@@ -31,6 +31,9 @@
 			background-color: #ffc107!important;
 			color: #fff!important;
 		}
+		.table th, .table td {
+			border: 1px solid #acacac;
+		}
 	</style>
 	@yield('style')
 </head>
@@ -41,7 +44,7 @@
 		<div class="row justify-content-between">
 			<div class="col-md-9 order-md-last">
 				<div class="row">
-					<div class="col-md-8 d-md-flex mb-md-0 mb-3">
+					<div class="col-md-7 d-md-flex mb-md-0 mb-3">
 						<form action="result" method="GET" role="form" class="searchform order-lg-last w-100">
 							<div class="form-group d-flex">
 								<input type="text" name="search_query" class="form-control pl-3" value="" placeholder="Tìm kiếm...">
@@ -51,8 +54,7 @@
 						</form>
 					</div>
 
-					
-					<div class="col-lg-2 pb-2">
+					<div class="col-lg-2 col-md-3 pb-2">
 						<a class="navbar-link btn btn-warning w-100" style="line-height: 2.3em;" href="{{asset('/post/create-post')}}">
 							Đăng tin
 						</a>
@@ -83,6 +85,13 @@
 											else {
 												$dom = "<a class='dropdown-item' href='login'>Đăng nhập</a>";
 											}
+											if(Session::get('session_logged_in')->status == 777){
+												$dom = "<a class='dropdown-item' href='profile'>Thông tin cá nhân</a>
+														<div class='dropdown-divider'></div>
+														<a class='dropdown-item' href='approval'>Duyệt bài</a>
+														<div class='dropdown-divider'></div>
+														<a class='dropdown-item' href='logout'>Đăng xuất</a>";
+											}
 										?>
 										{!! $dom !!}
 									</div>
@@ -93,7 +102,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3 d-flex">
+			<div class="col-md-3 d-flex justify-content-center">
 				<div class="social-media">
 					<p class="mb-0 d-flex">
 						<a href="#" class="d-flex align-items-center justify-content-center"><span

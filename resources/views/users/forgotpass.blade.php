@@ -114,6 +114,7 @@
             <h3>Chào mừng</h3>
             <p>Đến với trang chia sẻ thông tin nhà trọ!</p>
             <a href="{{asset('/login')}}"><input class="mt-0" type="submit" id="cho-log" name="" value="Đăng nhập"/></a><br/>
+            <a href="{{asset('/')}}"><input class="mt-0" type="submit" id="cho-log" name="" value="Trang chủ"/></a><br/>
             {{-- <input class="mt-0" type="submit" id="cho-re" name="" value="Đăng ký"/><br/> --}}
         </div>
         <div class="col-md-9 login-right">

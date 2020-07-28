@@ -97,3 +97,12 @@ Route::group(['prefix' => 'resetpassword'], function () {
 Route::group(['prefix' => 'result'], function () {
     Route::get('/','SearchController@index');
 });
+//=============Approval=============
+Route::group(['prefix' => 'approval'], function () {
+    Route::get('/','ApprovalController@index');
+    Route::get('/review','ApprovalController@review');
+    Route::get('/accept','ApprovalController@store');
+});
+Route::group(['prefix' => 'detail'], function () {
+    Route::get('/','DetailController@index');
+});

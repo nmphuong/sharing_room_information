@@ -137,7 +137,7 @@ a.cls:not(.collapsed):after {
         <div class="row">
             @foreach ($roomOfNew as $roomnew)
                 <div class="col-md-3 col-lg-2 ftco-animate">
-                    <div class="staff"><a href="detail.html">
+                    <div class="staff"><a href="{{asset('detail?post='.$roomnew->id)}}">
                         <div class="img-wrap d-flex align-items-stretch" style="height: 150px;">
                         <?php 
                             $imagenew = str_replace("[","",$roomnew->image);
@@ -153,11 +153,11 @@ a.cls:not(.collapsed):after {
                             <div class="faded">
                             <p class="mb-2 price text-danger"><span class="price text-danger">{{number_format($roomnew->price, 0, '', ',')}}</span><u>
                                     đ</u></p>
-                            <div class="p-1" style="overflow: hidden; line-height: 1.5em; height: 3em;"><a href="#">{{$roomnew->title}}</a></div>
+                            <div class="p-1" style="overflow: hidden; line-height: 1.5em; height: 3em;"><a href="{{asset('detail?post='.$roomnew->id)}}">{{$roomnew->title}}</a></div>
                             <p style="line-height: 1em;" class="mb-0">...</p>
                             <span class="position">{{$roomnew->fullname}}</span><span> - </span>
                             <span class="position">{{$roomnew->_name}}</span><br>
-                            <a href="#" class="btn btn-primary">Xem</a>
+                            <a href="{{asset('detail?post='.$roomnew->id)}}" class="btn btn-primary">Xem</a>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate m-0"><a href="#"
                                         class="d-flex align-items-center justify-content-center"><span
