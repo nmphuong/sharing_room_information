@@ -47,12 +47,14 @@ class ApprovalController extends Controller
     
     }
 
-    public function postShow($id)
+    public function postShow(Request $request ,$id)
     {
         $data = Room::find($id);
-        //DB::update('update phong_tro set status = 2 where id = ?', [$id]);
-        
-        return view('approval',['data'=>$data]);
+        $data->status = $request->status;
+        $data->save();
+    
+        //DB::update("update phong_tro set status = 1 where status = 0");
+        return redirect('approval');
     
     }
 

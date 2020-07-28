@@ -47,7 +47,7 @@ Route::group(['prefix' => 'search'], function () {
 Route::group(['prefix' => 'approval'], function () {
     Route::get('/','ApprovalController@index' );
     Route::get('/detail{id}','ApprovalController@getShow' );
-    Route::post('/','ApprovalController@postShow' );
+    Route::post('/detail{id}','ApprovalController@postShow' );
 });
 
 

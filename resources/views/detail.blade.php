@@ -5,7 +5,7 @@
     <div class="row">
         <h1 class="col-lg-12">Chi Tiết Bài Viết</h1>
     </div>
-    <form class="row" id="form form-add-post" action="">
+    <form class="row" id="form form-add-post" action="" method="post">
         <div class="title col-lg-12">
             
             
@@ -69,6 +69,10 @@
                 <div class="tien-ich col-lg-12">
                     <h3>Tiện ích</h3> <br>
                      <p>{{$data->utilities}}</p>
+                </div>
+                <div class="trang-thai col-lg-12">
+                    <h3>Trạng thái</h3> <br>
+                     <input type="text" name="status" class="form-control" value="{{$data->status}}">
                 </div>
                  <div class="form-group mt-3 mb-3 mr-0 ml-0 col-lg-4">
                     <select name="province" id="province" class="form-control drop">
