@@ -58,15 +58,15 @@
 						<div class="row d-flex">
 							{{-- <a href="{{asset('/user')}}" class="col-5 mb-3 justify-content-center"> --}}
 							<?php 
-								if(Session::get('session_logged_in') == null || Session::get('session_logged_in')->avatar == null){
-									$avatar = "https://www.thehumanenterprise.com.au/wp-content/uploads/2017/06/Empty-Profile-Testimonials-300x300.jpg";
+								if(Session::get('session_logged_in') == null || (Session::get('session_logged_in')->avatar == null && Auth::user()->avatar == null)){
+									$avatar = "emptydefaultuser.jpg";
 								}
 								else {
-									$avatar = Session::get('session_logged_in')->avatar;
+									$avatar = Auth::user()->avatar;
 								}
 							?>
 							
-							<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('{{$avatar}}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+							<div class="ml-auto mr-auto" style="width: 50px; height: 50px; border-radius: 50%; background-image: url('{{asset('/avatars/')}}{{"/".$avatar}}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 								<div class="btn-group">
 									<button type="button" class="btn dropdown-toggle" style="color: transparent;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 									<div class="dropdown-menu">
@@ -86,7 +86,7 @@
 														<div class='dropdown-divider'></div>
 														<a class='dropdown-item' href='approval'>Quản trị viên</a>
 														<div class='dropdown-divider'></div>
-														<a class='dropdown-item' href='logout'>Đăng xuất</a>";
+														<a class='dropdown-item' href='".asset('/logout')."'>Đăng xuất</a>";
 												}
 											}
 										?>

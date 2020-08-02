@@ -24,7 +24,7 @@ class ApprovalController extends Controller
                     $offset = (int)(($request->page - 1) * 5);
                 }
                 $postCount['postCount'] = ceil(count(DB::select('select * from phong_tro where status = 0')) / 5);
-                $post['post'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users` , `district` where `user` in (select id from users) and phong_tro.status = 0 and users.id = user and district.id = district order by day_post desc limit 5 offset " . $offset . ";");
+                $post['post'] = DB::select("select phong_tro.*,users.fullname from  `phong_tro`, `users` where `user` in (select id from users) and phong_tro.status = 0 and users.id = user order by day_post desc limit 5 offset " . $offset . ";");
                 return view('managers.approval')->with($post)->with($postCount);
             }
             return view('not_found.page_not_found_page');

@@ -82,9 +82,9 @@ class PostController extends Controller
         $post->district = $request->district;
         $post->acreage = $request->a_dt_post;
         $post->price = $request->a_price_post;
-        $post->room_number = 1;
+        $post->room_number =  $request->a_pn_post;
         $post->utilities = $request->a_ti_post;
-        $post->vip = $request->a_pn_post;
+        $post->vip = 0;
         $post->favorite = 0;
         $post->type = $request->a_type_post;
         $post->status = 0;

@@ -242,7 +242,7 @@ a.cls:not(.collapsed):after {
                                 <div class="text">
                                     <p class="mb-4" style="height: 153px; overflow: hidden;">{{$rev->content}}</p>
                                     <div class="d-flex align-items-center">
-                                        <div class="user-img" style="background-image: url({{$rev->avatar}}); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+                                        <div class="user-img" style="background-image: url({{asset('/avatars/')}}{{"/".$rev->avatar}}); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
                                         <div class="pl-3">
                                             <p class="name">{{$rev->fullname}}</p>
                                             <span class="position">User</span>

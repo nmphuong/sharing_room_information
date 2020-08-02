@@ -43,14 +43,14 @@
 									$avatar = Auth::user()->avatar;
 								}
 							?>
-                <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 250px; height: 250px;">
+                <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{asset('/avatars/')}}{{"/".$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 250px; height: 250px;">
                     <div class="circle" style="position: absolute;">
                         <span class="circle__content">VIP {{Auth::user()->vip}}</span>
                       </div>
-                    <div class="w-100 h-100" id="chg-avt" style="background-color: rgba(24, 24, 24, 0.726); border-radius: 50%;">
+                    {{-- <div class="w-100 h-100" id="chg-avt" style="background-color: rgba(24, 24, 24, 0.726); border-radius: 50%;">
                             <i class="fa fa-pencil text-white" style="font-size: 3rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" aria-hidden="true"></i>
-                            <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="">
-                    </div>
+                            <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="" id='imgInp'>
+                    </div> --}}
                 </div>
             </a>
         </div>
@@ -104,9 +104,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form class="needs-validation row" method="POST">
-
-
+                  <form class="needs-validation row" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Bạn chắc chắn muốn cập nhật thông tin cá nhân!');">
 
                     <?php 
                       if(Auth::user() == null || Auth::user()->avatar == null){
@@ -117,9 +115,9 @@
                       }
                     ?>
                     <div class="col-lg-12">
-                      <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 50px; height: 50px;">
+                      <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{asset('/avatars/')}}{{"/".$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 50px; height: 50px;">
                         <div class="w-100 h-100" id="chg-avt" style="background-color: rgba(24, 24, 24, 0.726); border-radius: 50%;">
-                          <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="" name="image">
+                          <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="" class="form-control-file" name="image_post[]" accept="image/*">
                         </div>
                       </div>
                     </div>
@@ -129,40 +127,45 @@
 
                     <div class="form-group col-lg-4">
                       <label for="exampleInputEmail1">Tên đăng nhập</label>
-                      <input type="text" class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Username" value="{{Auth::user()->username}}" required disabled>
+                      <input type="text" name='username' class="form-control" id="input-disabled" aria-describedby="emailHelp" placeholder="Username" value="{{Auth::user()->username}}" required readonly>
                     </div>
                     <div class="form-group col-lg-4">
                         <label for="exampleInputEmail1">Ngày sinh</label>
-                        <input type="date" class="form-control" aria-describedby="emailHelp" placeholder="birthday" value="{{Auth::user()->birthday}}" required>
+                        <input type="date" name="birthday" class="form-control" aria-describedby="emailHelp" placeholder="birthday" value="{{Auth::user()->birthday}}" required>
                     </div>
                     <div class="form-group col-lg-4">
                       <label for="exampleInputPassword1">Số điện thoại</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="So Dien Thoai" value="{{Auth::user()->phone}}" required>
+                      <input type="text" name='phone' class="form-control" id="exampleInputPassword1" placeholder="So Dien Thoai" value="{{Auth::user()->phone}}" required>
                     </div>
                     <div class="form-group col-lg-6">
                       <label for="exampleInputEmail1">Tên đầy đủ</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username" value="{{Auth::user()->fullname}}" required>
+                      <input type="text" name="fullname" class="form-control" id="exampleInputPassword1" placeholder="Username" value="{{Auth::user()->fullname}}" required>
                     </div>
                     <?php
 											if(Auth::user()->email == ""){
 												$dom = "Chưa có thông tin email";
+                        $value = "";
+                        $readonly = '';
 											}
 											else {
 												$dom = Auth::user()->email;
+                        $value = Auth::user()->email;
+                        $readonly = 'readonly';
 											}
 										?>
                     <div class="form-group col-lg-6">
                       <label for="exampleInputPassword1">Email</label>
-                      <input type="email" class="form-control" id="exampleInputPassword1" placeholder="{{$dom}}" value="" required>
+                      <input {!! $readonly !!} id="input-disabled" type="email" name="email" class="form-control" id="exampleInputPassword1" placeholder="{{$dom}}" value="{!! $value !!}" required>
                     </div>
 
                     <div class="form-group col-lg-12">
                         <label for="exampleInputPassword1">Địa chỉ</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="city" value="{{Auth::user()->address}}" required>
+                        <input type="text" name="address" class="form-control" id="exampleInputPassword1" placeholder="city" value="{{Auth::user()->address}}" required>
                       </div>
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-info">Cập nhật</button>
                     </div>
+                    {{csrf_field()}}
                   </form>
                 </div>
                 <div class="modal-footer">
