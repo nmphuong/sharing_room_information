@@ -17,7 +17,7 @@ class DetailController extends Controller
         //
         $posts= DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward and phong_tro.status = 1");
         $post['post'] = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward and phong_tro.status = 1");
-        dump(count($posts));
+        //dump(count($posts));
         if(count($posts) == 0){
             return view('not_found.page_not_found_page');
         }

@@ -27,13 +27,8 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/flaticon.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 	<style>
-		#btnFilter:hover{
-			background-color: #ffc107!important;
-			color: #fff!important;
-		}
-		.table th, .table td {
-			border: 1px solid #acacac;
-		}
+		#btnFilter:hover{background-color:#ffc107!important;color:#fff!important;}
+		.table th, .table td{border:1px solid #acacac;}
 	</style>
 	@yield('style')
 </head>
@@ -85,12 +80,14 @@
 											else {
 												$dom = "<a class='dropdown-item' href='login'>Đăng nhập</a>";
 											}
-											if(Session::get('session_logged_in')->status == 777){
+											if(Session::get('session_logged_in') != null ){
+												if(Session::get('session_logged_in')->status == 777){
 												$dom = "<a class='dropdown-item' href='profile'>Thông tin cá nhân</a>
 														<div class='dropdown-divider'></div>
-														<a class='dropdown-item' href='approval'>Duyệt bài</a>
+														<a class='dropdown-item' href='approval'>Quản trị viên</a>
 														<div class='dropdown-divider'></div>
 														<a class='dropdown-item' href='logout'>Đăng xuất</a>";
+												}
 											}
 										?>
 										{!! $dom !!}

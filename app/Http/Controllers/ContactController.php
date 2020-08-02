@@ -45,6 +45,7 @@ class ContactController extends Controller
         $contact->email = $request->email;
         $contact->title = $request->subject;
         $contact->content = $request->message;
+        $contact->status = 0;
         $contact->save();
 
         $input = strtolower($request->email);

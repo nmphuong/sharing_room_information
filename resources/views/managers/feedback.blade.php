@@ -7,7 +7,7 @@
         <a href="{{asset('/feedback')}}" class="btn btn-info">Phản hồi</a>
         <a href="{{asset('/statistical')}}" class="btn btn-success">Thống kê</a>
     </div>
-    <div><p class="h2">Danh sách bài viết chờ duyệt</p></div>
+    <div><p class="h2">Danh sách phản hồi</p></div>
     <div class="table-responsive">
         @if (session('success'))
             <div class="alert alert-primary text-center">
@@ -17,11 +17,12 @@
         <table class="table table-hover table-light">
             <thead class="bg-dark">
                 <tr>
+                    <th scope="col">Người dùng</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Tiêu đề</th>
-                    <th scope="col">Hình ảnh</th>
-                    <th scope="col">Người đăng</th>
+                    <th scope="col">Nội dung</th>
+                    <th scope="col">Trang thái</th>
                     <th scope="col">Ngày đăng</th>
-                    <th scope="col">Loại</th>
                     <th scope="col">Thao tác</th>
                 </tr>
             </thead>
@@ -29,30 +30,19 @@
             <?php //dump($post); ?>
             @foreach ($post as $p)
                 <tr>
-                    <td>{{$p->title}}</td>
-                    <?php 
-                    //dd($roomOfUserVip);
-                        $image = str_replace("[","",$p->image);
-                        $image = str_replace("]","",$image);
-                        $image = str_replace("`","",$image);
-                        $dirs = explode(',', $image);
-                        //dd($roomVip->image ,$dirs); 
-                    ?>
-                    <td class=""><div class="w-100 text-center"><img class="img align-self-stretch" style="width: 5vw;" src="{{asset('uploads/'.$dirs[0])}}" /></div></td>
                     <td>{{$p->fullname}}</td>
-                    <td>{{$p->created_at}}</td>
-                    <td><?php if($p->type == 1){
-                            $type = "Phòng trọ";
-                        } else if($p->type == 2){
-                            $type = "Căn hộ";
-                        } else if($p->type == 3){
-                            $type = "Nhà nguyên căn";
+                    <td>{{$p->email}}</td>
+                    <td>{{$p->title}}</td>
+                    <td style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{$p->content}}</td>
+                    <td><?php if($p->status == 0){
+                            $dom = "Chưa phản hồi";
                         } else {
-                            $type = "Khác";
+                            $dom = "Đã phản hồi";
                         } ?>
-                        {!! $type !!}</td>
+                        {!! $dom !!}</td>
+                    <td>{{$p->created_at}}</td>
                     <td class='text-center'>
-                        <a class="btn btn-info text-white" href="{{asset('approval/review?post='.$p->id)}}"><i class="far fa-eye"></i></a>
+                        <a class="btn btn-info text-white" href="{{asset('feedback/reviewfb?post='.$p->id)}}"><i class="far fa-eye"></i></a>
                     </td>
                 </tr>
             @endforeach

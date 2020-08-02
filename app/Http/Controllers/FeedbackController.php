@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Session;
 use DB;
-use Exception;
+use Mail;
 
-class ApprovalController extends Controller
+class FeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,31 +23,47 @@ class ApprovalController extends Controller
                 if($request->page != null){
                     $offset = (int)(($request->page - 1) * 5);
                 }
-                $postCount['postCount'] = ceil(count(DB::select('select * from phong_tro where status = 0')) / 5);
-                $post['post'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users` , `district` where `user` in (select id from users) and phong_tro.status = 0 and users.id = user and district.id = district order by day_post desc limit 5 offset " . $offset . ";");
-                return view('managers.approval')->with($post)->with($postCount);
-            }
-            return view('not_found.page_not_found_page');
-        }
-        return view('not_found.page_not_found_page');
-    }
-    public function review(Request $request, Response $response)
-    {
-        //dump($request);
-        if(Session::get('session_logged_in')){
-            if(Session::get('session_logged_in')->status == 777){
-                $posts = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward and phong_tro.status = 0");
-                $post['post'] = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward and phong_tro.status = 0");
-                if(count($posts) == 0){
-                    return view('not_found.page_not_found_page');
-                }
-                return view('managers.review')->with($post);
+                $postCount['postCount'] = ceil(count(DB::select('select * from contact')) / 5);
+                $post['post'] = DB::select("select * from  `contact` order by created_at desc limit 5 offset " . $offset . ";");
+                return view('managers.feedback')->with($post)->with($postCount);
             }
             return view('not_found.page_not_found_page');
         }
         return view('not_found.page_not_found_page');
     }
 
+    public function review(Request $request, Response $response)
+    {
+        if(Session::get('session_logged_in')){
+            if(Session::get('session_logged_in')->status == 777){
+                $posts = DB::select("select * from  `contact` where id = " . $request->post);
+                $post['post'] = DB::select("select * from  `contact` where id = " . $request->post);
+                if(count($posts) == 0){
+                    return view('not_found.page_not_found_page');
+                }
+                return view('managers.reviewfb')->with($post);
+            }
+            return view('not_found.page_not_found_page');
+        }
+        return view('not_found.page_not_found_page');
+    }
+
+    public function answer(Request $request){
+        // $data = array('message'=>$request->message);
+        // $mail = array('emailto'=>$request->email);
+        $input = strtolower($request->email);
+        $mess = $request->message;
+        $data = array('emailto'=>$input);
+        $mess = array('mess'=>$mess);
+        Mail::send(['html'=>'templateEmail.templateAnswerFeedback'],$mess, function($message) use ($data,$mess){
+            foreach($data as $d)
+            $message->to($d, '')->subject('Cám ơn bạn đã gửi phản hồi');
+            
+            $message->from('noreply.sharingroom@gmail.com', "noreply.sharingroom@gmail.com");
+        });
+        DB::table('contact')->where('id', $request->id)->update(['status' => 1]);
+        return redirect('/feedback')->with('success', 'Gửi phản hồi thành công!');;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -67,12 +83,6 @@ class ApprovalController extends Controller
     public function store(Request $request)
     {
         //
-        if(Session::get('session_logged_in')->status == 777){
-            //dump($request->post);
-            DB::table('phong_tro')->where('id', $request->post)->update(['status'=>1]);
-            return redirect('approval')->with('success', 'Thành công!');
-        }
-        return view('not_found.page_not_found_page');
     }
 
     /**

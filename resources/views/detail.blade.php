@@ -71,15 +71,6 @@
                 </div>     
             </div>
         </div>
-        <div class="col-lg-12 pt-3">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a class="btn btn-success  fa fa-check-square-o" href="{{asset('/approval/accept?post='.$data->id)}}" type="submit">Duyệt</a>
-                    <!-- <a type="submit" class="btn btn-warning fa fa-comments"> </a> -->
-                    <a type="submit" href="{{asset('approval')}}" class="btn btn-danger fa fa-times"> Hủy</a>
-                </div>
-            </div>
-        </div>
     </form>
 </div>
 @endforeach

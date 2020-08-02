@@ -22,12 +22,12 @@ class HouseController extends Controller
      */
     public function index(Request $request)
     {
-        dump($request->page);
+        //dump($request->page);
         $offset = 0;
         if($request->page != null){
             $offset = (int)(($request->page - 1) * 12);
         }
-        dump($offset);
+        //dump($offset);
 
 
         $acreage = '';
@@ -68,7 +68,7 @@ class HouseController extends Controller
         $ward['ward'] =  [];
         $postCount['postCount'] = ceil(count(DB::select('select * from phong_tro where type = 3')) / 12);
         $posts['posts'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 3 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
-        dump("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 3 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
+        //dump("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 3 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
         return view('house')->with($province)->with($district)->with($ward)->with($posts)->with($postCount);
     }
 

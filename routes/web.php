@@ -103,6 +103,18 @@ Route::group(['prefix' => 'approval'], function () {
     Route::get('/review','ApprovalController@review');
     Route::get('/accept','ApprovalController@store');
 });
+//=============Feedback=============
+Route::group(['prefix' => 'feedback'], function () {
+    Route::get('/','FeedbackController@index');
+    Route::get('/reviewfb','FeedbackController@review');
+    Route::post('/reviewfb','FeedbackController@answer');
+});
+
+//=============statistical=============
+Route::group(['prefix' => 'statistical'], function () {
+    Route::get('/','ReportController@index');
+});
+
 Route::group(['prefix' => 'detail'], function () {
     Route::get('/','DetailController@index');
 });
