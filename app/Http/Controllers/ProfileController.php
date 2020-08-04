@@ -54,13 +54,11 @@ class ProfileController extends Controller
             }
         }
         $avatar = '';
-        dump($request->image_post);
         if($request->image_post != null){
-            dump(1);
             $avatar = "`avatar`='".$images."',";
         }
-        dump("update `users` set ".$avatar."`birthday`='".$request->birthday."', `phone`='".$request->phone."', `fullname`='".$request->fullname."', `address`='".$request->address."' where `username`='". $request->username."'");
         DB::update("update `users` set ".$avatar."`birthday`='".$request->birthday."', `phone`='".$request->phone."', `fullname`='".$request->fullname."', `address`='".$request->address."' where `username`='". $request->username."'");
+        return redirect()->back()->with('success', 'Thành công!');
     }
 
     /**

@@ -31,6 +31,11 @@
 <section class="container-fluid px-md-3  pt-2 pt-md-3 pb-3">
     <div class="row">
         <div class="col-lg-12">
+         @if (session('success'))
+            <div class="alert alert-primary text-center">
+                {{ session('success') }}
+            </div>
+        @endif
             <p class="text-center display-4" style="font-family: 'Lobster', cursive!important;">Thông tin cá nhân</p>
         </div>
         <div class="col-lg-12 justify-content-center">
