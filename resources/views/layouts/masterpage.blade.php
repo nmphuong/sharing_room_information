@@ -73,18 +73,18 @@
 										{{-- <a class="dropdown-item" href="{{asset('/profile')}}">{{Auth::user()->fullname}}</a> --}}
 										<?php
 											if(Session::get('session_logged_in')){
-												$dom = "<a class='dropdown-item' href='profile'>Thông tin cá nhân</a>
+												$dom = "<a class='dropdown-item' href='".asset('/profile')."'>Thông tin cá nhân</a>
 														<div class='dropdown-divider'></div>
-														<a class='dropdown-item' href='logout'>Đăng xuất</a>";
+														<a class='dropdown-item' href='".asset('/logout')."'>Đăng xuất</a>";
 											}
 											else {
 												$dom = "<a class='dropdown-item' href='login'>Đăng nhập</a>";
 											}
 											if(Session::get('session_logged_in') != null ){
 												if(Session::get('session_logged_in')->status == 777){
-												$dom = "<a class='dropdown-item' href='profile'>Thông tin cá nhân</a>
+												$dom = "<a class='dropdown-item' href='".asset('/profile')."'>Thông tin cá nhân</a>
 														<div class='dropdown-divider'></div>
-														<a class='dropdown-item' href='approval'>Quản trị viên</a>
+														<a class='dropdown-item' href='".asset('/approval')."'>Quản trị viên</a>
 														<div class='dropdown-divider'></div>
 														<a class='dropdown-item' href='".asset('/logout')."'>Đăng xuất</a>";
 												}

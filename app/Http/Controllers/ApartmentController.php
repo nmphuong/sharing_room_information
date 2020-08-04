@@ -66,8 +66,8 @@ class ApartmentController extends Controller
         $province['province'] = Province::all();
         $district['district'] = [];
         $ward['ward'] =  [];
-        $postCount['postCount'] = ceil(count(DB::select('select * from phong_tro where type = 2')) / 12);
-        $posts['posts'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 2 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
+        $postCount['postCount'] = ceil(count(DB::select('select * from phong_tro where type = 2 and status = 1')) / 12);
+        $posts['posts'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and phong_tro.status = 1 " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 2 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
         //dump("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) " . $acreage . " " . $price . " " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " and type = 2 and users.id = user and district.id = district order by day_post desc limit 12 offset " . $offset . ";");
         return view('apartment')->with($province)->with($district)->with($ward)->with($posts)->with($postCount);
     }

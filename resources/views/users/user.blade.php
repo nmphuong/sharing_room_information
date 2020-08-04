@@ -95,7 +95,7 @@
     </div>
     <div class="row justify-content-center">
       <div class="manager-post">
-      <button class="btn btn-info m-2"><a href="{{asset('/post')}}" class="text-white">Quản lý tin</a></button>
+      <button class="btn btn-info m-2"><a href="{{asset('manager-post')}}" class="text-white">Quản lý tin</a></button>
       </div>
         <div class="update-profile">
             <button id="update-profile" class="btn btn-info border-0 m-2" data-toggle="modal" data-target="#update-profile-modal">Cập nhật thông tin</button>

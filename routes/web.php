@@ -66,6 +66,12 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('/','ProfileController@index' );
     Route::post('/','ProfileController@store' );
 });
+//=============Manager Post=============
+Route::group(['prefix' => 'manager-post'], function () {
+    Route::get('/','ManagerPostController@index' );
+    Route::get('/review','ManagerPostController@review');
+    Route::get('/delete','ManagerPostController@destroy');
+});
 //=============Profile=============
 Route::group(['prefix' => 'changepwd'], function () {
     Route::get('/','ChangePasswordController@index' );
