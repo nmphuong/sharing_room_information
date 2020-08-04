@@ -4,7 +4,7 @@
 #chg-avt{
     display: none;
 }
-#d-avt:hover #chg-avt{
+#d-avt:hover #chg-avt, #d-change-avt:hover #chg-avt{
     display: block!important;
 }
 .circle {
@@ -115,13 +115,27 @@
                       }
                     ?>
                     <div class="col-lg-12">
-                      <div id="d-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{asset('/avatars/')}}{{"/".$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 50px; height: 50px;">
+                      <div id="d-change-avt" class="ml-auto mr-auto" style="border-radius: 50%;  background-image: url('{{asset('/avatars/')}}{{"/".$avatar}}'); background-size: cover;  background-position: center; background-repeat: no-repeat; width: 80px; height: 80px;">
                         <div class="w-100 h-100" id="chg-avt" style="background-color: rgba(24, 24, 24, 0.726); border-radius: 50%;">
-                          <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="" class="form-control-file" name="image_post[]" accept="image/*">
+                          <input id='change-avt' type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="" class="form-control-file" name="image_post[]" accept="image/*">
                         </div>
                       </div>
                     </div>
-
+                    
+                  <script>
+                    document.getElementById('change-avt').addEventListener('change', readURL, true);
+                    function readURL(){
+                    var file = document.getElementById("change-avt").files[0];
+                    var reader = new FileReader();
+                    reader.onloadend = function(){
+                    document.getElementById('d-change-avt').style.backgroundImage = "url(" + reader.result + ")";        
+                    }
+                    if(file){
+                    reader.readAsDataURL(file);
+                    }else{
+                    }
+                    }
+                  </script>
 
 
 
