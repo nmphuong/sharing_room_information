@@ -29,6 +29,51 @@
 	<style>
 		#btnFilter:hover{background-color:#ffc107!important;color:#fff!important;}
 		.table th, .table td{border:1px solid #acacac;}
+		#cke_1_top{display:none;}
+	</style>
+
+	<style>
+	.carousel {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+.slides {
+  height: 100%;
+  width: 100%;
+  position: relative;
+	overflow: hidden;
+	border: 1px solid #000;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 3em;
+  color: white;
+  line-height: 400px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1000ms;
+}
+
+.slide[data-state=active] {
+  display: block;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.indicator {
+    cursor: pointer;
+}
 	</style>
 	@yield('style')
 </head>
@@ -49,15 +94,14 @@
 						</form>
 					</div>
 
-					<div class="col-lg-2 col-md-3 pb-2">
-						<a class="navbar-link btn btn-warning w-100" style="line-height: 2.3em;" href="{{asset('/post/create-post')}}">
-							Đăng tin
-						</a>
-					</div>
-					<div class="col-md-2">
-						<div class="row d-flex">
-							{{-- <a href="{{asset('/user')}}" class="col-5 mb-3 justify-content-center"> --}}
-							<?php 
+					<div class="col-lg-5 col-md-5 pb-2 text-center">
+						<div class="row">
+						<div class='col-lg-7 col-md-7 pb-3'>
+							<a class="navbar-link btn btn-warning w-100" style="line-height: 2.3em;" href="{{asset('/post/create-post')}}">
+								Đăng tin
+							</a>
+						</div>
+						<?php 
 								if(Session::get('session_logged_in') == null || (Session::get('session_logged_in')->avatar == null && Auth::user()->avatar == null)){
 									$avatar = "emptydefaultuser.jpg";
 								}
@@ -94,9 +138,15 @@
 									</div>
 								</div>
 							</div>
-							{{-- </a> --}}
-						</div>
+							</div>
 					</div>
+					{{-- <div class="col-md-2">
+						<div class="row d-flex"> --}}
+							{{-- <a href="{{asset('/user')}}" class="col-5 mb-3 justify-content-center"> --}}
+							
+							{{-- </a> --}}
+						{{-- </div>
+					</div> --}}
 				</div>
 			</div>
 			<div class="col-md-3 d-flex justify-content-center">

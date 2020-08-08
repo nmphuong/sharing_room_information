@@ -56,16 +56,16 @@
                     <input required onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" name="a_pn_post" placeholder="1..." class="form-control col-12" value="1">
                 </div>
                  <div class="form-group mt-3 mb-3 mr-0 ml-0 col-lg-4">
-                    <select required name="province" id="province" class="form-control drop">
-                        <option value="-1">--Thành phố--</option>
+                    <select name="province" id="province" class="form-control drop" required>
+                        <option value="">--Thành phố--</option>
                     @foreach ( $province as $prov )
                         <option value="{{$prov->id}}">{{$prov->_name}}</option>
                     @endforeach
                     </select>
                 </div>
                 <div class="form-group mt-3 mb-3 mr-0 ml-0 col-lg-4">
-                    <select required id="district" name="district" class="form-control">
-                        <option value="-1">--Quận/Huyện--</option>
+                    <select id="district" name="district" class="form-control" required>
+                        <option value="">--Quận/Huyện--</option>
                         @foreach ( $district as $dist )
                             <option value="{{$dist->id}}">{{$dist->_name}}</option>
                         @endforeach
@@ -73,18 +73,50 @@
                 </div>
                 <div class="form-group mt-3 mb-3 mr-0 ml-0 col-lg-4">
                     <select required id="ward" name="ward" class="form-control">
-                        <option value="-1">--Phường--</option>
+                        <option value="">--Phường--</option>
                         @foreach ( $ward as $war )
                             <option value="{{$war->id}}">{{$war->_name}}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group mt-3 mb-3 mr-0 ml-0 col-lg-4">
+                <div class="form-group mt-3 mb-3 mr-0 ml-0 col-lg-12">
                     <div id="add_img">
-                        <input required name="image_post[]" type="file" class="form-control-file" multiple  accept="image/*"/>
+                        <input required name="image_post[]" id='uploadFile' type="file" class="form-control-file col-lg-5 col-md-5" multiple  accept="image/*"/>
+                        <div id="div_upload_image">
+                        </div>
                     </div>
                    {{-- <button id="add_element_img" type="button" class="btn btn-primary">Thêm hình ảnh</button> --}}
                 </div>
+                <script>
+                    document.getElementById('uploadFile').addEventListener('change', readURL, true);
+                    function readURL(){
+                        
+                        var cc = document.getElementById('div_image_will_uploaded');
+                        if(cc){
+                            cc.remove();
+                        }
+                        var elementDIV = document.createElement("div");
+                        elementDIV.setAttribute("id", "div_image_will_uploaded");
+                        elementDIV.setAttribute("class", "d-flex");
+                        var parent = document.getElementById('div_upload_image');
+                        parent.appendChild(elementDIV);
+
+                        var file = document.getElementById("uploadFile");
+                        for(var i = 0; i < file.files.length; i++){
+                            console.log(i);
+                            console.log(file.files[i]);
+                            var reader = new FileReader();
+                            reader.readAsDataURL(file.files[i]);
+                            reader.onload = function(e){
+                                var div = document.getElementById('div_image_will_uploaded');
+                                let element = document.createElement("IMG");
+                                element.setAttribute("src", e.target.result);
+                                element.setAttribute("width", "304");
+                                div.appendChild(element);
+                            }
+                        }
+                    }
+                  </script>
             </div>
         </div>
         <div class="col-lg-12 pt-3">

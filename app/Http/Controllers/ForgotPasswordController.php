@@ -39,7 +39,7 @@ class ForgotPasswordController extends Controller
             });
             return redirect()->back()->with('success', 'Gửi thành công vui lòng kiểm tra email!');;
         }
-        return redirect()->back()->with('error', 'Tài khoản hoặc email không tồn tại!');;
+        return redirect()->back()->with('error', 'Bạn cần kiểm tra đúng email của tài khoản!');;
     }
 
     public function resetpass(Request $request)

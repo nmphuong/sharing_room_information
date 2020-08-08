@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Province;
+use App\District;
+use App\Ward;
+use View;
 use Session;
 use DB;
 
@@ -31,10 +35,30 @@ class ManagerPostController extends Controller
 
     public function review(Request $request, Response $response)
     {
+        
         if(Session::get('session_logged_in')){
             $idUser = Session::get('session_logged_in')->id;
-            $posts = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where phong_tro.user=".$idUser." and `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward");
-            $post['post'] = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where phong_tro.user=".$idUser." and  `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward");
+            $address = DB::select("select * from phong_tro where id=".$request->post);
+            $location = "";
+            $getlocationName = "";
+            $from = "";
+            if($address[0]->city >= 1){
+                $location = $location." and province.id = city";
+                $getlocationName = $getlocationName.", province._name as province_name";
+                $from = $from.",`province`";
+            }
+            if($address[0]->district >= 1){
+                $location = $location." and district.id = district";
+                $getlocationName = $getlocationName.",district._name, district._prefix";
+                $from = $from." , `district`";
+            }
+            if($address[0]->ward >= 1){
+                $location = $location." and ward.id = ward";
+                $getlocationName = $getlocationName.", ward._name as ward_name, ward._prefix as ward_prefix ";
+                $from = $from.", `ward`";
+            }
+            $posts = DB::select("select phong_tro.*,users.fullname ".$getlocationName." from  `phong_tro`, `users`".$from." where phong_tro.user=".$idUser." and `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user".$location);
+            $post['post'] = DB::select("select phong_tro.*,users.fullname ".$getlocationName." from  `phong_tro`, `users`".$from." where phong_tro.user=".$idUser." and  `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user".$location);
             if(count($posts) == 0){
                 return view('not_found.page_not_found_page');
             }
@@ -81,9 +105,22 @@ class ManagerPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        if(Session::get('session_logged_in')){
+            $idUser = Session::get('session_logged_in')->id;
+            $posts = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where phong_tro.user=".$idUser." and `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward");
+            $post['post'] = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where phong_tro.user=".$idUser." and  `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward");
+            if(count($posts) == 0){
+                return view('not_found.page_not_found_page');
+            }
+            $type_post['type_post'] = DB::select('select * from type_post');
+            $province['province'] = Province::all();
+            $district['district'] = [];
+            $ward['ward'] =  [];
+            return view('posts.editPost')->with($post)->with($province)->with($district)->with($ward)->with($type_post);
+        }
+        return view('not_found.page_not_found_page');
     }
 
     /**
@@ -93,9 +130,25 @@ class ManagerPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $images = "";
+        if($request->file('image_post') != null){
+            $images = ",`image`='";
+            $input = $request->all();
+            $images = $images."[";
+            if($files = $request->file('image_post')){
+                foreach($files as $file){
+                    $name = $file->getClientOriginalName();
+                    $name = time().rand().substr($name, strrpos($name, '.', 1));
+                    $file->move('uploads',$name);
+                    $images = $images.$name.',';
+                }
+            }
+            $images = $images."]'";
+        }
+        DB::update("update `phong_tro` set `title`='".$request->title."',`content`='".$request->content."',`phone_number`='".$request->phonenumber."',`city`=".$request->province.",`ward`=".$request->ward.",`district`=".$request->district.",`acreage`=".$request->acreage.",`price`=".$request->price.",`room_number`=".$request->room_number.",`utilities`='".$request->utilities."',`type`=".$request->type_post."".$images." where id=".$request->id);
+        return redirect()->back()->with('success', 'Cập nhật thành công!');
     }
 
     /**

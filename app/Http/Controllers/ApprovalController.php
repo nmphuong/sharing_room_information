@@ -36,8 +36,27 @@ class ApprovalController extends Controller
         //dump($request);
         if(Session::get('session_logged_in')){
             if(Session::get('session_logged_in')->status == 777){
-                $posts = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward and phong_tro.status = 0");
-                $post['post'] = DB::select("select phong_tro.*,users.fullname,district._name, district._prefix, province._name as province_name, ward._name as ward_name, ward._prefix as ward_prefix from  `phong_tro`, `users` , `district`, `province`, `ward` where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user and district.id = district and province.id = city and ward.id = ward and phong_tro.status = 0");
+                $address = DB::select("select * from phong_tro where id=".$request->post);
+                $location = "";
+                $getlocationName = "";
+                $from = "";
+                if($address[0]->city >= 1){
+                    $location = $location." and province.id = city";
+                    $getlocationName = $getlocationName.", province._name as province_name";
+                    $from = $from.",`province`";
+                }
+                if($address[0]->district >= 1){
+                    $location = $location." and district.id = district";
+                    $getlocationName = $getlocationName.",district._name, district._prefix";
+                    $from = $from." , `district`";
+                }
+                if($address[0]->ward >= 1){
+                    $location = $location." and ward.id = ward";
+                    $getlocationName = $getlocationName.", ward._name as ward_name, ward._prefix as ward_prefix ";
+                    $from = $from.", `ward`";
+                }
+                $posts = DB::select("select phong_tro.*,users.fullname ".$getlocationName." from  `phong_tro`, `users`".$from." where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user".$location." and phong_tro.status = 0");
+                $post['post'] = DB::select("select phong_tro.*,users.fullname ".$getlocationName." from  `phong_tro`, `users`".$from." where `user` in (select id from users) and phong_tro.id = " . $request->post . " and users.id = user".$location." and phong_tro.status = 0");
                 if(count($posts) == 0){
                     return view('not_found.page_not_found_page');
                 }

@@ -82,9 +82,9 @@ class SearchController extends Controller
         $key['key'] = $searchQuery . " " . $p . " " . $d . " " . $w;
 
 
-        $select = "select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district and title like N'%" .$searchQuery. "%' " .$acreage. " " .$price. " " .$provinceSearch. " " . $districtSearch . " " . $wardSearch . " order by day_post desc limit 50;";
+        $select = "select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district and title like N'%" .$searchQuery. "%' " .$acreage. " " .$price. " " .$provinceSearch. " " . $districtSearch . " " . $wardSearch . " and phong_tro.status=1 order by day_post desc limit 50;";
 
-        $result['result'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district and title like N'%" .$searchQuery. "%' " .$acreage. " " .$price. " " .$provinceSearch. " " . $districtSearch . " " . $wardSearch . " order by day_post desc limit 50;");
+        $result['result'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and users.id = user and district.id = district and title like N'%" .$searchQuery. "%' " .$acreage. " " .$price. " " .$provinceSearch. " " . $districtSearch . " " . $wardSearch . " and phong_tro.status=1 order by day_post desc limit 50;");
 
 
         //dump($select);

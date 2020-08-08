@@ -31,7 +31,10 @@ class ReportController extends Controller
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $timeZone = date("Y-m-d H:i:s");
                 $dateReal = date_create();
-                $days_p = "-". $request->time ." days";
+                if($request->time == -1 && $request->time == null){
+                    $request->time = -1;
+                }
+                $days_p = "-". $time ." days";
                 date_modify($dateReal, $days_p);
 
                 $query = '';

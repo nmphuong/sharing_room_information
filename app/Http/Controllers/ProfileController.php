@@ -53,11 +53,15 @@ class ProfileController extends Controller
                 $images = $images.$name;
             }
         }
+        $email = "";
+        if($request->email != ''){
+            $email = ",`email`='".$request->email."' ";
+        }
         $avatar = '';
         if($request->image_post != null){
             $avatar = "`avatar`='".$images."',";
         }
-        DB::update("update `users` set ".$avatar."`birthday`='".$request->birthday."', `phone`='".$request->phone."', `fullname`='".$request->fullname."', `address`='".$request->address."' where `username`='". $request->username."'");
+        DB::update("update `users` set ".$avatar."`birthday`='".$request->birthday."', `phone`='".$request->phone."', `fullname`='".$request->fullname."', `address`='".$request->address."'".$email." where `username`='". $request->username."'");
         return redirect()->back()->with('success', 'Thành công!');
     }
 

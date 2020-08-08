@@ -71,6 +71,8 @@ Route::group(['prefix' => 'manager-post'], function () {
     Route::get('/','ManagerPostController@index' );
     Route::get('/review','ManagerPostController@review');
     Route::get('/delete','ManagerPostController@destroy');
+    Route::get('/edit','ManagerPostController@edit');
+    Route::post('/update','ManagerPostController@update');
 });
 //=============Profile=============
 Route::group(['prefix' => 'changepwd'], function () {

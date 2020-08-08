@@ -39,10 +39,10 @@
             <p class="text-center display-4" style="font-family: 'Lobster', cursive!important;">Thông tin cá nhân</p>
         </div>
         <div class="col-lg-12 justify-content-center">
-            <a href="#">
+            <span>
             <?php 
 								if(Auth::user() == null || Auth::user()->avatar == null){
-									$avatar = "https://www.thehumanenterprise.com.au/wp-content/uploads/2017/06/Empty-Profile-Testimonials-300x300.jpg";
+									$avatar = "emptydefaultuser.jpg";
 								}
 								else {
 									$avatar = Auth::user()->avatar;
@@ -57,7 +57,7 @@
                             <input type="file" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; width: 250px; height: 250px; opacity: 0;" title="" id='imgInp'>
                     </div> --}}
                 </div>
-            </a>
+            </span>
         </div>
         <div class="col-lg-12 text-center mt-2">
             <input id="edit-fn" style="font-size: 2em" class="text-center text-primary" style="font-family: 'Lobster', cursive!important; outline: none; border: 0;" disabled value="{{Auth::user()->fullname}}">
@@ -113,7 +113,7 @@
 
                     <?php 
                       if(Auth::user() == null || Auth::user()->avatar == null){
-                        $avatar = "https://www.thehumanenterprise.com.au/wp-content/uploads/2017/06/Empty-Profile-Testimonials-300x300.jpg";
+                        $avatar = "emptydefaultuser.jpg";
                       }
                       else {
                         $avatar = Auth::user()->avatar;
@@ -136,7 +136,7 @@
                     document.getElementById('d-change-avt').style.backgroundImage = "url(" + reader.result + ")";        
                     }
                     if(file){
-                    reader.readAsDataURL(file);
+                      reader.readAsDataURL(file);
                     }else{
                     }
                     }

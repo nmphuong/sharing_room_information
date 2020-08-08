@@ -20,9 +20,10 @@ class AuthenticateController extends Controller
         $expiredEmail = time() * 1000;
         $expiredEmails['expiredEmails'] = false;
         $notFoundPage['notFoundPage'] = false;
+        $expiredForgotword['expiredForgotword'] = false;
         if($user->status == 1){
             $notFoundPage['notFoundPage'] = true;
-            return view("not_found.page_not_found")->with($expiredEmails)->with($notFoundPage);
+            return view("not_found.page_not_found")->with($expiredEmails)->with($notFoundPage)->with($expiredForgotword);
         }
         else {
             if(($user->expired_verify_email - $expiredEmail) >= 0){
@@ -31,7 +32,7 @@ class AuthenticateController extends Controller
             }
             else {
                 $expiredEmails['expiredEmails'] = true;
-                return view("not_found.page_not_found")->with($expiredEmails)->with($notFoundPage);
+                return view("not_found.page_not_found")->with($expiredEmails)->with($notFoundPage)->with($expiredForgotword);
             }
         }
     }
