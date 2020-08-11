@@ -65,12 +65,12 @@ class HomeController extends Controller
 
 
         //dd($province);
-        $roomOfUserVip['roomOfUserVip'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and phong_tro.status = 1 " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " " . $price . " " . $acreage . " and users.id = user and district.id = district order by day_post desc limit 12;");
+        $roomOfUserVip['roomOfUserVip'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 1) and phong_tro.status = 1 and phong_tro.vip = 1 " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " " . $price . " " . $acreage . " and users.id = user and district.id = district order by day_post desc limit 12;");
         $numPhongTro['numPhongTro'] = DB::select('select count(*) as numPhongTro from phong_tro where type = 1 and status = 1');
         $numCanHo['numCanHo'] = DB::select('select count(*) as numCanHo from phong_tro where type = 2 and status = 1');
         $numHouse['numHouse'] = DB::select('select count(*) as numHouse from phong_tro where type = 3 and status = 1');
         $numOGhep['numOGhep'] = DB::select('select count(*) as numOGhep from phong_tro where type = 4 and status = 1');
-        $roomOfNew['roomOfNew'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users where vip = 0) and phong_tro.status = 1 " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " " . $price . " " . $acreage . " and users.id = user and district.id = district order by day_post desc limit 12;");
+        $roomOfNew['roomOfNew'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and phong_tro.status = 1 " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " " . $price . " " . $acreage . " and users.id = user and district.id = district order by day_post desc limit 12;");
         $roomOfFavorite['roomOfFavorite'] = DB::select("select phong_tro.*,users.fullname,district._name from  `phong_tro`, `users`, `district` where `user` in (select id from users) and phong_tro.status = 1 " . $provinceSearch . " " . $districtSearch . " " . $wardSearch . " " . $price . " " . $acreage . " and users.id = user and district.id = district order by favorite desc limit 12;");
         $review['review'] = DB::select('select review.*, users.fullname, users.avatar from review, users where users.id = user ');
         //dd($roomOfFavorite);

@@ -24,13 +24,26 @@ class ManagerPostController extends Controller
             $offset = 0;
             $idUser = Session::get('session_logged_in')->id;
             if($request->page != null){
-                $offset = (int)(($request->page - 1) * 5);
+                $offset = (int)(($request->page - 1) * 12);
             }
-            $postCount['postCount'] = ceil(count(DB::select("select * from phong_tro where user=" .$idUser."")) / 5);
-            $post['post'] = DB::select("select * from phong_tro where user=" .$idUser." order by day_post desc limit 5 offset " . $offset . ";");
-            return view ('posts.managerPost')->with($post)->with($postCount);
+            $count_vip = DB::select('select * from `phong_tro` where vip = 1 and (status = 1 OR status = 0) and user = ' . $idUser);
+            $amount_vip['amount_vip'] = count($count_vip);
+            //dump($amount_vip);
+            $postCount['postCount'] = ceil(count(DB::select("select * from phong_tro where (status = 1 OR status = 0) and user=" .$idUser."")) / 12);
+            $post['post'] = DB::select("select * from phong_tro where user=" .$idUser." and (status = 1 OR status = 0) order by day_post desc limit 12 offset " . $offset . ";");
+            return view ('posts.managerPost')->with($post)->with($postCount)->with($amount_vip);
         }
         return view('not_found.page_not_found_page');
+    }
+
+    public function uptovip(Request $request){
+        DB::update("update `phong_tro` set `vip` = 1 where `id`=".$request->post);
+        return redirect()->back()->with('success', "Cập nhật VIP thành công");
+    }
+
+    public function cancelvip(Request $request){
+        DB::update("update `phong_tro` set `vip` = 0 where `id`=".$request->post);
+        return redirect()->back()->with('success', "Hủy VIP thành công");
     }
 
     public function review(Request $request, Response $response)

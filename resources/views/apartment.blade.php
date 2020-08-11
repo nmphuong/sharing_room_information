@@ -27,7 +27,7 @@
                             $dirs = explode(',', $image);
                             //dd($roomVip->image ,$dirs); 
                         ?>
-                            <div class="img align-self-stretch" style="background-image: url({{$dirs[0]}});">
+                            <div class="img align-self-stretch" style="background-image: url({{asset('/uploads/'.$dirs[0])}});">
                             </div>
                         </div></a>
                         <div class="text pb-4 text-center">

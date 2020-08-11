@@ -60,16 +60,38 @@
                             $status = "Đã xóa";
                         }?>
                         {!! $status !!}</td>
-                    <td class='text-center'>
+                    <td class='text-center' style="vertical-align: middle;">
                     <?php 
                             $hidden = '';
                             if($p->status == 3){
                             $hidden = "disabled";
                         }?>
-                        <div class='d-flex justify-content-around'>
-                          <form class=''><a class="btn btn-info text-white" href="{{asset('manager-post/review?post='.$p->id)}}"><i class="far fa-eye"></i></a></form>
-                          <form class=''><a class="btn btn-warning text-white {!! $hidden !!}" href="{{asset('manager-post/edit?post='.$p->id)}}"><i class="far fa-edit"></i></a></form>
-                          <form method="GET" action="{{asset('manager-post/delete')}}" onsubmit="return confirm('Bạn chắc chắn muốn xóa bài viết!');"><button {!! $hidden !!} class="btn btn-danger text-white"><i class="fas fa-trash"></i></button><input style="display: none;" name='post' value='{{$p->id}}'></form>
+                        <div class='d-flex justify-content-start'>
+                          <form style="margin: 0px 2px;" class=''><a class="btn btn-info text-white" href="{{asset('manager-post/review?post='.$p->id)}}"><i class="far fa-eye"></i></a></form>
+                          <form style="margin: 0px 2px;" class=''><a class="btn btn-warning text-white {!! $hidden !!}" href="{{asset('manager-post/edit?post='.$p->id)}}"><i class="far fa-edit"></i></a></form>
+                          <form style="margin: 0px 2px;" method="GET" action="{{asset('manager-post/delete')}}" onsubmit="return confirm('Bạn chắc chắn muốn xóa bài viết!');"><button {!! $hidden !!} class="btn btn-danger text-white"><i class="fas fa-trash"></i></button><input style="display: none;" name='post' value='{{$p->id}}'></form>
+                          <?php 
+                          $vip = '';
+                          $href = '';
+                          $cancelvip = '';
+                          $message = '';
+                          if(Session::get('session_logged_in')->vip == 1){
+                            if ($amount_vip < 2 && $p->vip == 0) {
+                                $vip = "<a class='btn btn-success text-white' href=".asset('manager-post/vip?post='.$p->id)."><i class='far fa-eye'></i></a>";
+                                $href = asset('manager-post/vip?post='.$p->id);
+                                $message = 'Bạn chắc chắc muốn nâng cấp bài viết này lên VIP?';
+                            }
+                            if($p->vip == 1){
+                                $cancelvip = "<a class='btn btn-secondary text-white' href=".asset('manager-post/cancelvip?post='.$p->id)."><i class='far fa-eye'></i></a>";
+                                $href = asset('manager-post/cancelvip?post='.$p->id); 
+                                $message = 'Bạn chắc chắc muốn xóa bài viết khỏi VIP?';
+                            }
+                          }
+                           ?>
+                           <form style="margin: 0px 2px;" class='' method='GET' action="{!!$href!!}" onclick="return confirm('{!!$message!!}');">
+                          {!! $vip !!}
+                          {!! $cancelvip !!}
+                          </form>
                         <div>
                     </td>
                 </tr>

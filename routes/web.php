@@ -73,6 +73,8 @@ Route::group(['prefix' => 'manager-post'], function () {
     Route::get('/delete','ManagerPostController@destroy');
     Route::get('/edit','ManagerPostController@edit');
     Route::post('/update','ManagerPostController@update');
+    Route::get('/vip', 'ManagerPostController@uptovip');
+    Route::get('/cancelvip', 'ManagerPostController@cancelvip');
 });
 //=============Profile=============
 Route::group(['prefix' => 'changepwd'], function () {

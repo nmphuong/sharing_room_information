@@ -102,7 +102,7 @@ a.cls:not(.collapsed):after {
                         $dirs = explode(',', $image);
                         //dd($roomVip->image ,$dirs); 
                     ?>
-                        <div class="img align-self-stretch" style="background-image: url({{$dirs[0]}}); background-size: cover; background-position: center; background-repeat: no-repeat;"> </div>
+                        <div class="img align-self-stretch" style="background-image: url({{asset('/uploads/'.$dirs[0])}}); background-size: cover; background-position: center; background-repeat: no-repeat;"> </div>
                     </div></a>
                     <div class="text pb-4 text-center">
                         <div class="faded">
@@ -191,7 +191,7 @@ a.cls:not(.collapsed):after {
                             $dirsfavorite = explode(',', $imagefavorite);
                             //dd($roomVip->image ,$dirs); 
                         ?>
-                        <div class="img align-self-stretch" style="background-image: url({{$dirsfavorite[0]}}); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                        <div class="img align-self-stretch" style="background-image: url({{asset('/uploads/'.$dirsfavorite[0])}}); background-size: cover; background-position: center; background-repeat: no-repeat;">
                         </div>
                     </div></a>
                     <div class="text pb-4 text-center">
