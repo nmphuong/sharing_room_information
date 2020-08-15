@@ -120,6 +120,13 @@ Route::group(['prefix' => 'feedback'], function () {
     Route::post('/reviewfb','FeedbackController@answer');
 });
 
+//=============Set-vip=============
+Route::group(['prefix' => 'set-vip'], function () {
+    Route::get('/','SetVipController@index');
+    Route::post('/uptovip','SetVipController@uptovip');
+    Route::post('/destroyvip','SetVipController@destroyvip');
+});
+
 //=============statistical=============
 Route::group(['prefix' => 'statistical'], function () {
     Route::get('/','ReportController@index');

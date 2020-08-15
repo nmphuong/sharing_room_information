@@ -12,9 +12,15 @@ Website sharing infomation room
 - Search
 - Filter
 - Post the news
-- Online payment
 - Register VIP member
 - Manager post
+- Post in type
+- Set account vip
+- Approval
+- Update pasowrd
+- Update profile
+- Set vip for post
+- View Detail post
 
 # View
 - Login - Register
@@ -33,6 +39,36 @@ Website sharing infomation room
 - Manager post
 - Đăng ký VIP members
 - Search
+- Approval
+- Feedback
+- Set Vip
+- Report
+
+#Path
+## 1.View
+```sh
+\resources\views
+```
+## 2.Router
+```sh
+\routes\web.php
+```
+## 3.Controller
+```sh
+\routes\web.php
+```
+## 4. Class
+```sh
+\app
+```
+## 5. Handler Exceptions
+```sh
+\app\Exceptions
+```
+## 6. Cron job schedule
+```sh
+\app\Console\Commands
+```
 
 # Installation Instructions
 ## 1. Install Composer on your OS using this command.

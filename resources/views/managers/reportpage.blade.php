@@ -4,6 +4,7 @@
 <div class="container-fluid pt-5 pb-3">
     <div class="text-center">
         <a href="{{asset('/approval')}}" class="btn btn-primary">Duyệt bài</a>
+        <a href="{{asset('/set-vip')}}" class="btn btn-warning">Setting Vip</a>
         <a href="{{asset('/feedback')}}" class="btn btn-info">Phản hồi</a>
         <a href="{{asset('/statistical')}}" class="btn btn-success">Thống kê</a>
     </div>
